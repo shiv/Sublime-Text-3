@@ -2,3 +2,4 @@ Local/
 Lib/
 *.exe
 AutoFoldCode.sublime-settings
+__pycache__
