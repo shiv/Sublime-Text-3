@@ -4,61 +4,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename A, typename B> string to_string(pair<A, B> p);
 string to_string(const char& ch) { return "'" + string(1, ch) + "'"; }
 string to_string(const string& s) { return '"' + s + '"'; }
 string to_string(const char* s) { return to_string((string) s); }
 string to_string(bool b) { return (b ? "true" : "false"); }
-string to_string(vector<bool> v) {
-    bool first = true; string res = "{";
-    for (int i = 0; i < static_cast<int>(v.size()); i++) {
-        if (!first) { res += ", "; }
-        first = false; res += to_string(v[i]);
-    }
-    res += "}"; return res;
-}
-template <typename A> string to_string(A v) {
-    bool first = true; string res = "{";
-    for (const auto &x : v) {
-        if (!first) { res += ", "; }
-        first = false; res += to_string(x);
-    }
-    res += "}"; return res;
-}
-template <typename A, typename B> string to_string(pair<A, B> p) {
-    return "(" + to_string(p.first) + ", " + to_string(p.second) + ")";
-}
+string to_string(vector<bool> v) { bool first = true; string res = "{"; for (int i = 0; i < static_cast<int>(v.size()); i++) { if (!first) { res += ", "; } first = false; res += to_string(v[i]); } res += "}"; return res; }
+template <typename A, typename B> string to_string(pair<A, B> p) { return "(" + to_string(p.first) + ", " + to_string(p.second) + ")"; }
+template <typename A> string to_string(A v) { bool first = true; string res = "{"; for (const auto &x : v) { if (!first) { res += ", "; } first = false; res += to_string(x); } res += "}"; return res; }
 #define output cout
 void debug_out() { output << endl; }
-template <typename Head, typename... Tail>
-void debug_out(Head H, Tail... T) {
-    output << " " << to_string(H);
-    debug_out(T...);
-}
+template <typename Head, typename... Tail> void debug_out(Head H, Tail... T) { output << " " << to_string(H); debug_out(T...); }
 #ifndef ONLINE_JUDGE
 #define dbg(...) output << "[" << #__VA_ARGS__ << "] :", debug_out(__VA_ARGS__)
 #else
 #define dbg(...) 42
 #endif
 
-#define FASTIO          ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
+#define FASTIO          ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 #define int             long long
 #define vt              vector
 #define vii             vector<int>
 #define viii            vector<vector<int>>
 #define pii             pair<int, int>
 #define all(v)          (v).begin(), (v).end()
-#define sz(v)           (int)v.size()
+#define sz(v)           (int)(v).size()
 #define pb              push_back
 #define in              insert
 #define F               first
 #define S               second
 #define inf             LLONG_MAX
-#define For(i, n)       for (int i = 0; i < n; i++)
-#define Rev(i, n)       for (int i = n-1; i >= 0; i--)
-#define FOR(i, n)       for (int i = 1; i <= n; i++)
-#define REV(i, n)       for (int i = n; i >= 1; i--)
-#define Fore(i, a, b)   for(int i = a; i <= b; i++)
+#define For(i, a, b)    for (int i = a; i < b; i++)
+#define Rev(i, a, b)    for (int i = b; i >= a; i--)
+#define Fore(i, a, b)   for (int i = a; i <= b; i++)
 #define memset(x, y)    memset(x, y, sizeof(x))
 #define fps(x, y)       fixed << setprecision(y) << x
 #define caseno(i)       cout << "Case #" << i << ": "
@@ -77,7 +54,7 @@ template <typename Head> void print(Head H) { cout << H; print(); }
 template <typename Head, typename... Tail> void print(Head H, Tail... T) { cout << H << " "; print(T...); }
 
 int rand_int(int l, int r) { static mt19937_64 gen(chrono::steady_clock::now().time_since_epoch().count()); return uniform_int_distribution<int>(l, r)(gen); }
-template<typename T> void myshuffle(vector<T> &a) { for (int i = 0; i < a.size(); i++) swap(a[i], a[rand_int(0, i)]); }
+template <typename T> void myshuffle(vector<T> &a) { for (int i = 0; i < a.size(); i++) swap(a[i], a[rand_int(0, i)]); }
 template <typename T, typename U> T amax(T& a, U b) { if (b > a) a = b; return a; }
 template <typename T, typename U> T amin(T& a, U b) { if (b < a) a = b; return a; }
 
@@ -85,6 +62,7 @@ int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 const int mod = 1000000007;
+// const int mod = 998244353;
 
 vii primes(int n) { bool P[n+1] = {false}; vii p; for (int j, i = 2; i <= n; i++) if (!P[i]) for (p.pb(i), j = i * i; j <= n; j += i) P[j] = true; return p; }
 int largest_bit(int x) { return x==0 ? -1 : 63 - __builtin_clzll(x); }
