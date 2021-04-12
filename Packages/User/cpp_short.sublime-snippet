@@ -1,0 +1,44 @@
+<snippet>
+	<content><![CDATA[
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int             long long
+#define vii             vector<int>
+#define viii            vector<vector<int>>
+#define pii             pair<int, int>
+#define all(v)          (v).begin(), (v).end()
+#define sz(v)           (int)(v).size()
+#define pb              push_back
+#define F               first
+#define S               second
+#define For(i, a, b)    for (int i = a; i < b; i++)
+
+const int mod = 1000000007;
+
+void presolve(int &t) {
+    // cin >> t;
+}
+
+void solve() {
+    // int n;
+    // cin >> n;
+    
+}
+
+signed main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t = 1;
+    presolve(t);
+    for (int i = 1; i <= t; i++)
+        solve();
+    return 0;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>short_cpp</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
