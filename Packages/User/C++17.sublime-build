@@ -8,7 +8,7 @@
     [
     	{
     		"name":"Compile",
-            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-DLOCAL", "-Wall"],
+            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-LOCAL", "-Wall"],
     		"shell": true
     	},
     	{
