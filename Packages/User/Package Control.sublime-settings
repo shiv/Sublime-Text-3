@@ -2,11 +2,13 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
+		"SublimeAStyleFormatter"
 	],
 	"installed_packages":
 	[
 		"AutoFoldCode",
 		"CppFastOlympicCoding",
+		"Formatter",
 		"Material Theme",
 		"Package Control"
 	]
