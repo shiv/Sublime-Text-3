@@ -91,10 +91,10 @@ void solve() {
 }
 
 signed main() {
-#ifdef LOCAL
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+// #ifdef LOCAL
+//     freopen("input.txt", "r", stdin);
+//     freopen("output.txt", "w", stdout);
+// #endif
     FASTIO;
     int t = 1;
     preSolve(t);
