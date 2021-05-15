@@ -3,3 +3,7 @@ Lib/
 *.exe
 AutoFoldCode.sublime-settings
 __pycache__
+Cache/
+Installed Packages/Formatter.sublime-package
+Packages/User/formatter.assets/
+autocommit.bat
