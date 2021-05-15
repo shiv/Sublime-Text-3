@@ -6,5 +6,10 @@ __pycache__
 Cache/
 Installed Packages/Formatter.sublime-package
 Packages/User/formatter.assets/
-autocommit.bat
+.bat
 Installed Packages/0_package_control_loader.sublime-package
+Backup/
+Packages/
+!Packages/User
+!Packages/CppFastOlympicCoding
+!Packages/FastOlympicCodingHook
