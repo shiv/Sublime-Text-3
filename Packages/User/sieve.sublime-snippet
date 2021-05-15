@@ -1,0 +1,44 @@
+<snippet>
+	<content><![CDATA[
+vector<int> spf(N, 0);
+// vector<int> unique_primes(N, 0);
+vector<bool> prime(N, true);
+vector<int> primes;
+void sieve() {
+    prime[0] = prime[1] = false;
+    for(int i = 2; i < N; i++) {
+        if(prime[i]) {
+            spf[i] = i;
+            primes.push_back(i);
+        }
+        int prod;
+        for(int j = 0; j < (int) primes.size() && primes[j] <= spf[i] && (prod = primes[j] * i) < N; j++) {
+            spf[prod] = primes[j];
+            prime[prod] = false;
+        }
+    }
+    // for(int i = 2; i < N; i++) {
+    //     int p = spf[i];
+    //     unique_primes[i] = unique_primes[i / p] + ((i / p) % p != 0);
+    // }
+}
+
+vector<pair<int, int>> factorise(int num) {
+    vector<pair<int, int>> factors;
+    while(num > 1) {
+        int factor = spf[num];
+        int cnt = 0;
+        while(spf[num] == factor) {
+            num /= spf[num];
+            cnt++;
+        }
+        factors.emplace_back(factor, cnt);
+    }
+    return factors;
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>sieve</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

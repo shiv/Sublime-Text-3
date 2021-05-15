@@ -1,11 +1,14 @@
 {
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
+	"font_face": "Source Code Pro Regular",
 	"font_size": 11,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
 	"save_on_focus_lost": true,
+	"tab_size": 4,
 	"theme": "Material-Theme-Darker.sublime-theme",
-	"word_wrap": true
+	"word_wrap": true,
+	// "translate_tabs_to_spaces": true
 }

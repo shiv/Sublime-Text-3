@@ -1,0 +1,100 @@
+<snippet>
+	<content><![CDATA[
+class segtree{
+public:
+	int n, h;
+	class node {
+	public:
+		int sum = 0, mn = INF, mx = -INF, cmn = 0, cmx = 0, add = 0;
+		node(){ 
+		}
+		void unite(const node& a, const node& b) {
+			this->sum = a.sum + b.sum + this->add;
+			this->cmn = (a.mn < b.mn ? a.cmn : (b.mn < a.mn ? b.cmn : a.cmn + b.cmn));
+			this->cmx = (a.mx > b.mx ? a.cmx : (b.mx > a.mx ? b.cmx : a.cmx + b.cmx));
+			this->mn = min(a.mn, b.mn) + this->add;
+			this->mx = max(a.mx, b.mx) + this->add;
+		}
+		void apply(const int& x, int z) {
+			this->sum += x * z;
+			this->mn += x;
+			this->mx += x;
+			this->add += x;
+		}
+	};
+	vt<node> tree;
+
+	segtree(int _n) {
+		n = _n;
+		tree.resize(2 * n);
+		h = 32 - __builtin_clz(n);
+	}
+
+	segtree(vt<int>& a){
+		n = a.size();
+		tree.resize(2 * n);
+		h = 32 - __builtin_clz(n);
+		for(int i = 0; i < n; i++) {
+			tree[n + i].sum = tree[n + i].mn = tree[n + i].mx = a[i];
+			tree[n + i].cmn = tree[n + i].cmx = 1;
+		}
+		build(0, n - 1);
+	}
+
+	void build(int l, int r) {
+		int k = 2;
+		for(l += n, r += n; l > 1; k <<= 1) {
+			l >>= 1;
+			r >>= 1;
+			for(int i = l; i <= r; i++) {
+				tree[i].unite(tree[i << 1], tree[i << 1 | 1]);
+			}
+		}
+	}
+
+	void push(int l, int r) {
+		int s = h, k = 1 << (h - 1);
+		for (l += n, r += n; s > 0; --s, k >>= 1) {
+		    for (int i = l >> s; i <= r >> s; ++i) {
+		    	if (tree[i].add == 0) continue;
+				tree[i << 1].apply(tree[i].add, k);
+				tree[i << 1 | 1].apply(tree[i].add, k);
+				tree[i].add = 0;
+		    }
+		}
+	}
+
+	void modify(int l, int r, int val) {
+		push(l, l);
+		push(r, r);
+		int k = 1;
+		int l0 = l, r0 = r;
+		for(l += n, r += n + 1; l < r; l >>= 1, r >>= 1, k <<= 1) {
+			if(l & 1) tree[l++].apply(val, k);
+			if(r & 1) tree[--r].apply(val, k);
+		}
+		build(l0, l0);
+		build(r0, r0);
+	}
+
+	node query(int l, int r) {
+		push(l, l);
+		push(r, r);
+		node res;
+		for (l += n, r += n + 1; l < r; l >>= 1, r >>= 1) {
+			if (l&1) res.unite(res, tree[l++]);
+			if (r&1) res.unite(res, tree[--r]);
+		}
+		return res;
+	}
+};
+
+string to_string(const segtree::node& x) {
+	return "{" + to_string(x.sum) + " " + to_string(x.mn) + " " + to_string(x.mx) + " " + to_string(x.cmn) + " " + to_string(x.cmx) + "}";
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>segtree_generic</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
