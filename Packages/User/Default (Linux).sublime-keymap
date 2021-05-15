@@ -1,0 +1,13 @@
+[
+	{ "keys": ["ctrl+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+	{ "keys": ["alt+up"], "command": "swap_line_up" },
+	{ "keys": ["alt+down"], "command": "swap_line_down" },
+	{ "keys": ["alt+shift+down"], "command": "duplicate_line" },
+	{ "keys": ["ctrl+shift+,"], "command": "add_date" },
+	{ "keys": ["ctrl+q"], "command": "cancel_build" },
+	{ "keys": ["ctrl+shift+r"], "command": "build", "args": {"variant": "Run"} },
+	{ "keys": ["ctrl+shift+c"], "command": "build", "args": {"variant": "Compile"} },
+	{ "keys": ["ctrl+shift+e"], "command": "build", "args": {"variant": "Debug"} },
+	{ "keys": ["ctrl+shift+i"], "command": "build", "args": {"variant": "Interactive"} },
+	{ "keys": ["ctrl+shift+a"], "command": "toggle_side_bar" },
+]

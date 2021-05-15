@@ -1,15 +1,15 @@
 Local/
 Lib/
-*.exe
-AutoFoldCode.sublime-settings
-__pycache__
 Cache/
-Installed Packages/Formatter.sublime-package
-Packages/User/formatter.assets/
-.bat
-Installed Packages/0_package_control_loader.sublime-package
 Backup/
-Packages/
-!Packages/User
-!Packages/CppFastOlympicCoding
-!Packages/FastOlympicCodingHook
+*.exe
+*.bat
+*.out
+__pycache__
+AutoFoldCode.sublime-settings
+Packages/User/formatter.assets/
+Installed Packages/0_package_control_loader.sublime-package
+Packages/*
+!Packages/User/
+!Packages/CppFastOlympicCoding/
+!Packages/FastOlympicCodingHook/
