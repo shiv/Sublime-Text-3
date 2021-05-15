@@ -1,7 +1,6 @@
-Local/
-Lib/
-Cache/
-Backup/
+/*
+!Installed Packages/
+!Packages/
 *.exe
 *.bat
 *.out
