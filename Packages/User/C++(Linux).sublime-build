@@ -20,7 +20,6 @@
         { 
             "name": "Interactive", 
             "cmd": ["g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -O2 && gnome-terminal"],
-            // "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "&&", "start", "cmd", "/k" , "$file_base_name"], 
             "shell": true 
         },
         { 

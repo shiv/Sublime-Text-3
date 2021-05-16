@@ -1,5 +1,5 @@
 { 
-    "cmd": ["g++", "-std=c++17", "-LOCAL", "-O2", "$file", "-o", "$file_base_name"],
+    "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-DLOCAL"],
     "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$", 
     "selector": "source.c++, source.cpp", 
     "working_dir": "$file_path", 
@@ -8,22 +8,22 @@
     [
     	{
     		"name":"Compile",
-            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-LOCAL", "-Wall"],
+            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-DLOCAL", "-O2"],
     		"shell": true
     	},
     	{
     		"name":"Run",
-            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-LOCAL", "-Wall", "&&" , "${file_base_name}.exe"],
+            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-DLOCAL", "-O2", "&&" , "${file_base_name}.exe"],
     		"shell": true
     	},
         { 
             "name": "Interactive", 
-            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "&&", "start", "cmd", "/k" , "$file_base_name"], 
+            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-O2", "&&", "start", "cmd", "/k" , "$file_base_name"], 
             "shell": true 
         },
         { 
             "name": "Debug", 
-            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-LOCAL", "-Wall", "-Wshadow", "-D_GLIBCXX_DEBUG", "&&" , "${file_base_name}.exe"],
+            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-DLOCAL", "-Wshadow", "-Wall", "-D_GLIBCXX_DEBUG", "&&" , "${file_base_name}.exe"],
             "shell":true
         }
     ]
