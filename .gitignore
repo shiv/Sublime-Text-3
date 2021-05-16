@@ -12,3 +12,4 @@ Packages/*
 !Packages/User/
 !Packages/CppFastOlympicCoding/
 !Packages/FastOlympicCodingHook/
+autocommit.*
