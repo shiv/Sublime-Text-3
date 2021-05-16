@@ -9,6 +9,5 @@
 	"save_on_focus_lost": true,
 	"tab_size": 4,
 	"theme": "Material-Theme-Darker.sublime-theme",
-	"word_wrap": true,
-	// "translate_tabs_to_spaces": true
+	"word_wrap": true
 }

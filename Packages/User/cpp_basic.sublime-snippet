@@ -95,8 +95,8 @@ void solve(int tc = 0) {
 
 signed main() {
 #ifdef DLOCAL
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("in", "r", stdin);
+    freopen("out", "w", stdout);
 #endif
     ios_base::sync_with_stdio(0);
     cin.tie(0);
