@@ -18,7 +18,7 @@
 		{
 			"name": "C++",
 			"extensions": ["cpp"],
-			"compile_cmd": "g++ '{source_file}' -std=c++17 -o {file_name}.out -Wshadow -Wall -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG",
+			"compile_cmd": "g++ '{source_file}' -std=c++17 -o {file_name}.out -Wshadow -Wall -D_GLIBCXX_DEBUG",
 			"run_cmd": "./\"{file_name}\".out {args} -debug",
 
 			"lint_compile_cmd": "g++ -std=c++17 '{source_file}' -I '{source_file_dir}'"
