@@ -252,7 +252,7 @@
 
 	// Toggle Right panel
 	{
-		"keys": ["ctrl+k", "ctrl+p"],
+		"keys": ["ctrl+shift+x"],
 		"command": "view_tester",
 		"args": {
 			"action": "sync_opdebugs"
