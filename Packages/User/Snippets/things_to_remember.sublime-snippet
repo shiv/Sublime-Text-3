@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+#define fps(x, y)       fixed << setprecision(y) << x
+#define Time()          output << "[Execution : " << (1.0 * clock()) / CLOCKS_PER_SEC << "s]\n"
+
+#undef _GLIBCXX_DEBUG
+
+const int mod = 998244353;
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>things_to_remember</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>
