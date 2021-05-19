@@ -4,28 +4,27 @@
 using namespace std;
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-int rand(int a, int b) { return uniform_int_distribution<int>(a, b)(rng); }
-
+int rand_int(int a, int b) { return uniform_int_distribution<int>(a, b)(rng); }
 
 int main() {
     srand(time(NULL));
     cout << 1 << '\n';
-    int n = rand(2, 7);
-    int k = rand(1, 2);
+    int n = rand_int(2, 7);
+    int k = rand_int(1, 2);
     cout << n << " " << k << '\n';
     vector<pair<int,int>> edges;
     for(int i = 2; i <= n; ++i) {
-        edges.emplace_back(rand(1, i - 1), i);
+        edges.emplace_back(rand_int(1, i - 1), i);
     }
-    
+
     vector<int> perm(n + 1); // re-naming vertices
     for(int i = 1; i <= n; ++i) {
         perm[i] = i;
     }
     random_shuffle(perm.begin() + 1, perm.end());
-    
+
     random_shuffle(edges.begin(), edges.end()); // random order of edges
-    
+
     for(pair<int, int> edge : edges) {
         int a = edge.first, b = edge.second;
         if(rand() % 2) {
@@ -36,7 +35,7 @@ int main() {
 }
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <tabTrigger>gen_tree</tabTrigger>
+    <tabTrigger>ge_tree</tabTrigger>
     <!-- Optional: Set a scope to limit where the snippet will trigger -->
     <!-- <scope>source.python</scope> -->
 </snippet>
