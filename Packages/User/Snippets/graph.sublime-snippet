@@ -1,82 +1,86 @@
 <snippet>
 	<content><![CDATA[
+
 class graph{
-public: 
-	const ll INF = 1e18L + 5;
-	ll n, e;
-	vt<vt<ll>> g;
-	vt<ll> bfs_dist, depth, dijkstra_dist;
+public:
+    int n, e;
+    vector<vector<int>> g;
+    vector<int> depth, parent;
+    vector<bool> visited;
+    int index = 0, n_;      // index = 1 for 1-based indexing
 
-	graph(ll _n){
-		n = _n;
-		g.resize(n + 1);
-	}
+    graph(int _n, int _index = 0) {
+        n = _n;
+        index = _index;
+        n_ = n + index;
+        g.resize(n_);
+        visited.assign(n_, false);
+        parent.assign(n_, -1);
+        depth.assign(n_, -1);
+    }
 
-	graph(ll _n, vt<vt<ll>> edge){
-		n = _n;
-		g = edge;
-	}
+    graph(int _n, vector<vector<int>> edge) : graph(_n) {
+        g = edge;
+    }
 
-	// undirected edge
-	void uadd(ll u, ll v){
-		g[u].pb(v);
-		g[v].pb(u);
-	}
+    void readGraph(int m) {
+        for (int i = 0, u, v; i < m; i++) {
+            cin >> u >> v;
+            u -= 1 - index; v -= 1 - index;
+            uadd(u, v);
+        }
+        // dbg(g);
+    }
+
+    // undirected edge
+    void uadd(int u, int v) {
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
 
     // directed edge
-	void dadd(ll u, ll v){
-		g[u].pb(v);
-	}
+    void dadd(int u, int v) {
+        g[u].push_back(v);
+    }
 
-	void bfs(vt<ll> src){
-		bfs_dist.resize(n + 1, INF);
-		queue<ll> q;
-		for(ll ele: src){
-			q.push(ele);
-			bfs_dist[ele] = 0;
-		}
+    void bfs(int src) {
+        queue<int> q;
+        q.push(src);
+        depth[src] = 0;
+        visited[src] = true;
 
-		while(!q.empty()){
-			ll u = q.front();
-			q.pop();
-			for(ll v: g[u]){
-				if(bfs_dist[v] > bfs_dist[u] + 1){
-					bfs_dist[v] = bfs_dist[u] + 1;
-					q.push(v);
-				}
-			}
-		}
-	}
+        while(!q.empty()) {
+            int v = q.front();
+            q.pop();
 
-	void dfs(ll u, ll p = -1){
-		dbg(u, p);
-		if(p == -1){
-			depth.resize(n + 1, -1);
-			depth[u] = 0;
-		}else{
-			depth[u] = 1 + depth[p];
-		}
+            for(int u: g[v]){
+                if (visited[u])
+                    continue;
+                visited[u] = true;
 
-		for(ll v: g[u]){
-			if(depth[v] == -1){
-				dfs(v, u);
-			}
-		}
-	}
+                depth[u] = depth[v] + 1;
+                parent[u] = v;
+                q.push(u);
+            }
+        }
+    }
 
-	void dijkstra(vt<ll> src){
-		dijkstra_dist.resize(n + 1, INF);
-		mnpq<pair<ll, ll>> pq;
-		for(ll ele: src){
-			pq.push({0, ele});
-			dijkstra_dist[ele] = 0;
-		}
-		while(!pq.empty()){
-			pair<ll, ll> ele = pq.top();
-			pq.pop();
-		}
-	}
+    void dfs(int v, int w = -1) {
+        if (w == -1)
+            depth[v] = 0;
+        visited[v] = true;
+
+        for(int u: g[v]) {
+            if(visited[u])
+                continue;
+
+            depth[u] = depth[v] + 1;
+            parent[u] = v;
+            dfs(u, v);
+        }
+    }
 };
+
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>graph</tabTrigger>

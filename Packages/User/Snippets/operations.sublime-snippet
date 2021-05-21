@@ -1,8 +1,6 @@
 <snippet>
     <content><![CDATA[
 
-int dx[4] = {-1, 0, 1, 0};
-int dy[4] = {0, 1, 0, -1};
 int largest_bit(int x) { return x == 0 ? -1 : 63 - __builtin_clzll(x); }
 int gcd(int a, int b) { if(a < b) return gcd(b, a); if (!b) return a; return gcd(b, a % b); }
 int lcm(int a, int b) { return a / gcd(a, b) * b; }
@@ -13,6 +11,7 @@ int exp(int x, int y, int m = mod) { int res = 1; x = x % m; while (y > 0) { if 
 int modinv(int x, int m = mod) { return exp(x, m - 2, m); }
 vii primes(int n) { bool P[n + 1] = {false}; vii p; for (int j, i = 2; i <= n; i++) if (!P[i]) for (p.pb(i), j = i * i; j <= n; j += i) P[j] = true; return p; }
 viii readGraph(int n, int m) { viii g(n); int a, b; for (int i = 0; i < m; i++) { cin >> a >> b; a--; b--; g[a].pb(b); g[b].pb(a); } return g; }
+
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>operations</tabTrigger>

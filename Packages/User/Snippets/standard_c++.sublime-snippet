@@ -3,24 +3,26 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define int long long
+#define int int64_t
 
-void solve(int tt) {
+void preSolve(int &t) {
+    // cin >> t;
+}
+
+void solve(int tc = 0) {
+    // int n;
+    // cin >> n;
 
 }
 
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-
-    int t;
-    cin >> t;
-
-    for(int tt = 1; tt <= t; tt++) {
-        solve(tt);
+    int t = 1;
+    preSolve(t);
+    for (int i = 1; i <= t; i++) {
+        solve(i);
     }
-    
-
     return 0;
 }
 ]]></content>

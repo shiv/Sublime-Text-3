@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+
+vector<int> path(int u) {       // returns empty vector if no path exist
+    vector<int> path;
+    if (!visited[u])
+        return path;
+    for (int v = u; v != -1; v = parent[v])
+        path.push_back(v);
+    reverse(path.begin(), path.end());
+    return path;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>graph_util</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
