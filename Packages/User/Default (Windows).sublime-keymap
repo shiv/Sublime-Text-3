@@ -3,6 +3,8 @@
 	{ "keys": ["alt+up"], "command": "swap_line_up" },
 	{ "keys": ["alt+down"], "command": "swap_line_down" },
 	{ "keys": ["alt+shift+down"], "command": "duplicate_line" },
+	{ "keys": ["ctrl+alt+s"], "command": "save_all" },
+	{ "keys": ["ctrl+shift+o"], "command": "prompt_open_folder" },
 	{ "keys": ["ctrl+shift+,"], "command": "add_date" },
 	{ "keys": ["ctrl+q"], "command": "cancel_build" },
 	{ "keys": ["ctrl+shift+r"], "command": "build", "args": {"variant": "Run"} },

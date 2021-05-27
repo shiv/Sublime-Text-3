@@ -1,8 +1,8 @@
 <snippet>
 	<content><![CDATA[
 #ifdef LOCAL
-    freopen("in", "r", stdin);
-    freopen("out", "w", stdout);
+    auto f1 = freopen("in", "r", stdin);
+    auto f2 = freopen("out", "w", stdout);
 #endif
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

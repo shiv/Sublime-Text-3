@@ -1,22 +1,21 @@
 <snippet>
 	<content><![CDATA[
 
-class graph{
+class graph {
 public:
     int n, e;
     vector<vector<int>> g;
     vector<int> depth, parent;
     vector<bool> visited;
-    int index = 0, n_;      // index = 1 for 1-based indexing
+    int index;
 
-    graph(int _n, int _index = 0) {
-        n = _n;
+    graph(int _n, int _index = 0) { // index = 1 for 1-based indexing
         index = _index;
-        n_ = n + index;
-        g.resize(n_);
-        visited.assign(n_, false);
-        parent.assign(n_, -1);
-        depth.assign(n_, -1);
+        n = _n + index;
+        g.resize(n);
+        visited.assign(n, false);
+        parent.assign(n, -1);
+        depth.assign(n, -1);
     }
 
     graph(int _n, vector<vector<int>> edge) : graph(_n) {
@@ -43,40 +42,42 @@ public:
         g[u].push_back(v);
     }
 
-    void bfs(int src) {
+    void bfs(vii src) {             // multi-source bfs
         queue<int> q;
-        q.push(src);
-        depth[src] = 0;
-        visited[src] = true;
+        for (auto ele : src) {
+            q.push(ele);
+            depth[ele] = 0;
+            visited[ele] = true;
+        }
 
         while(!q.empty()) {
-            int v = q.front();
+            int u = q.front();
             q.pop();
 
-            for(int u: g[v]){
-                if (visited[u])
+            for(int v: g[u]){
+                if (visited[v])
                     continue;
-                visited[u] = true;
+                visited[v] = true;
 
-                depth[u] = depth[v] + 1;
-                parent[u] = v;
-                q.push(u);
+                depth[v] = depth[u] + 1;
+                parent[v] = v;
+                q.push(v);
             }
         }
     }
 
-    void dfs(int v, int w = -1) {
+    void dfs(int u, int w = -1) {
         if (w == -1)
-            depth[v] = 0;
-        visited[v] = true;
+            depth[u] = 0;
+        visited[u] = true;
 
-        for(int u: g[v]) {
-            if(visited[u])
+        for(int v: g[u]) {
+            if(visited[v])
                 continue;
 
-            depth[u] = depth[v] + 1;
-            parent[u] = v;
-            dfs(u, v);
+            depth[v] = depth[u] + 1;
+            parent[v] = u;
+            dfs(v, u);
         }
     }
 };

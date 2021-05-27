@@ -1,0 +1,103 @@
+<snippet>
+    <content><![CDATA[
+
+class graph_shortest_path {
+public:
+    int n, e;
+    vector<vector<pii>> g;
+    vector<int> djikstra_dist, bf_dist;
+    vector<vector<int>> fw_dist;
+    int index;
+
+    graph_shortest_path(int _n, int _index = 0) { // index = 1 for 1-based indexing
+        index = _index;
+        n = _n + index;
+        g.resize(n);
+        djikstra_dist.assign(n, 1e18);
+    }
+
+    graph_shortest_path(int _n, vector<vector<pii>> edge) : graph_shortest_path(_n) {
+        g = edge;
+    }
+
+    void readGraph(int m) {
+        for (int i = 0, u, v, w; i < m; i++) {
+            cin >> u >> v >> w;
+            u -= 1 - index; v -= 1 - index;
+            uadd(u, v, w);
+        }
+    }
+
+    // undirected edge
+    void uadd(int u, int v, int w) {
+        g[u].push_back({v, w});
+        g[v].push_back({u, w});
+    }
+
+    // directed edge
+    void dadd(int u, int v, int w) {
+        g[u].push_back({v, w});
+    }
+
+    void djikstra(vii src) {
+        // mnpq<pair<int, int>> pq;
+        priority_queue<pii, vector<pii>, greater<pii>> pq;
+        for (int ele : src) {
+            pq.push({0, ele});
+            djikstra_dist[ele] = 0;
+        }
+
+        while (!pq.empty()) {
+            auto [dist, u] = pq.top();
+            pq.pop();
+            if (dist > djikstra_dist[u])
+                continue;
+
+            for (auto& [v, weight] : g[u]) {
+                if (djikstra_dist[v] > djikstra_dist[u] + weight) {
+                    djikstra_dist[v] = djikstra_dist[u] + weight;
+                    pq.push({djikstra_dist[v], v});
+                }
+            }
+        }
+    }
+
+    void flyod_warshall() {
+        fw_dist.assign(n, vector<int>(n, 1e18));
+
+        for (int i = index; i < n; i++)
+            fw_dist[i][i] = 0;
+        for (int i = index; i < n; i++)
+            for (auto& [j, w] : g[i])
+                fw_dist[i][j] = min(fw_dist[i][j], w);
+
+        for (int k = index; k < n; k++)
+            for (int i = index; i < n; i++)
+                for (int j = index; j < n; j++)
+                    fw_dist[i][j] = min(fw_dist[i][j], fw_dist[i][k] + fw_dist[k][j]);
+    }
+
+    bool bellman_ford(int src) {
+        bf_dist.assign(n, inf);
+        bf_dist[src] = 0;
+        for (int i = 0; i < n; i++) {
+            for (int u = 0; u < n; u++) {
+                for (auto& [v, w] : g[u]) {
+                    if (bf_dist[v] > bf_dist[u] + w) {
+                        bf_dist[v] = bf_dist[u] + w;
+                        if (i == n - 1)
+                            return true;    // negative cycle
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>graph_shortest_path</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>
