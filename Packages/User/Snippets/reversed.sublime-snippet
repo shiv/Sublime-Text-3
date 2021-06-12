@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+
+template<typename T> struct reversed_iter { T& container; reversed_iter(T& container): container(container) {} auto begin() -> decltype(container.rbegin()) { return container.rbegin(); } auto end() -> decltype(container.rend()) { return container.rend(); } };
+template<typename T> reversed_iter<T> reversed(T & container) { return reversed_iter<T>(container); }
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>reversed</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

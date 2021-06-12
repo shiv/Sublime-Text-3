@@ -5,8 +5,8 @@ int dx[] = {0 , 0, 1, -1};
 int dy[] = {1, -1, 0, 0};
 string ds = "RLDU";
 
-bool possible(int x,int y, int n, int m) {      // [n, m)
-    return  n <= x && x < m && n <= x && y < m;
+bool possible(int x,int y, int n, int m) {
+    return  0 <= x && x < n && 0 <= y && y < m;
 }
 
 ]]></content>

@@ -8,12 +8,13 @@
 	"font_size": 12,
 	"ignored_packages":
 	[
-		"Vintage"
+		"Vintage",
 	],
 	"save_on_focus_lost": true,
 	"tab_size": 4,
 	"theme": "Material-Theme-Darker.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
-	"word_wrap": true
+	"caret_style": "smooth",
+	"word_wrap": true,
 }

@@ -10,6 +10,8 @@
 		"CppFastOlympicCoding",
 		"Formatter",
 		"Material Theme",
-		"Package Control"
-	]
+		"Multicommand",
+		"Package Control",
+		"PackageResourceViewer",
+	],
 }

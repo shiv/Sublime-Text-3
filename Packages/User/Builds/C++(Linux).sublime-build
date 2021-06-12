@@ -24,7 +24,7 @@
         },
         { 
             "name": "Debug", 
-            "cmd": ["g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL -Wshadow -Wall -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && \"./${file_base_name}\".out"],
+            "cmd": ["g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL -Wshadow -Wall -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG"],
             "shell":true
         }
     ]

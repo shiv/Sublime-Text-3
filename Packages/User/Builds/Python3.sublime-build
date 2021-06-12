@@ -1,5 +1,5 @@
 {
-	"cmd": ["python", "$file","${file_base_name}.py<input.txt>output.txt"],
+	"cmd": ["python", "$file","${file_base_name}.py"],
 	"shell":true,
 	"working_dir":"$file_path",
 	"selector": "source.py",

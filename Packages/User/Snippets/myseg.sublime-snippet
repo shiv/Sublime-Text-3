@@ -1,0 +1,110 @@
+<snippet>
+    <content><![CDATA[
+struct segnode {
+    int a;
+    segnode(int _a = 0) : a(_a) {}
+    segnode operator+ (const segnode& other) const {
+        segnode ans;
+        // merging of two segnodes
+        ans.a = a + other.a;
+        return ans;
+    }
+};
+
+istream& operator>>(istream& in, segnode node) {
+    in >> node.a;
+    return in;
+}
+
+ostream& operator<<(ostream& out, segnode node) {
+    out << node.a;
+    return out;
+}
+
+template<typename input, typename node>
+struct segtree {
+
+    int size;
+    vector<node> nodes;
+
+    // neutral node
+    node identity_element = {0};
+
+    node merge(node &a, node &b) {
+        // merging of two nodes
+        return a + b;
+    }
+
+    node make_node(input &v) {
+        // conversion of input to node
+        node m = {v}; 
+        return m;
+    }
+
+    segtree(int n) {
+        size = 1;
+        while (size < n) size <<= 1;
+        nodes.resize(2 * size);
+    }
+
+    segtree(int n, vector<input> &a) {
+        size = 1;
+        while (size < n) size <<= 1;
+        nodes.resize(2 * size);
+        build(a);
+    }
+
+    void build(vector<input> &a, int x, int lx, int rx) {
+        if (rx - lx == 1) {
+            if (lx < (int)a.size())
+                nodes[x] = make_node(a[lx]);
+            return;
+        }
+        int m = (lx + rx) >> 1;
+        build(a, x << 1 | 0, lx, m);
+        build(a, x << 1 | 1, m, rx);
+        nodes[x] = merge(nodes[x << 1 | 0], nodes[x << 1 | 1]);
+    }
+
+    void build(vector<input> &a) {
+        build(a, 1, 0, size);
+    }
+
+    void update(int i, input v, int x, int lx, int rx) {
+        if (rx - lx == 1) {
+            nodes[x] = make_node(v);
+            return;
+        }
+        int m = (lx + rx) >> 1;
+        if (i < m)
+            update(i, v, x << 1 | 0, lx, m);
+        else
+            update(i, v, x << 1 | 1, m, rx);
+        nodes[x] = merge(nodes[x << 1 | 0], nodes[x << 1 | 1]);
+    }
+
+    void update(int i, input v) {
+        update(i, v, 1, 0, size);
+    }
+
+    node query(int l, int r, int x, int lx, int rx) {
+        if (lx >= r || l >= rx)
+            return identity_element;
+        if (lx >= l && rx <= r)
+            return nodes[x];
+        int m = (lx + rx) >> 1;
+        node s1 = query(l, r, x << 1 | 0, lx, m);
+        node s2 = query(l, r, x << 1 | 1, m, rx);
+        return merge(s1, s2);
+    }
+
+    node query(int l, int r) {          // [l, r)
+        return query(l, r, 1, 0, size);    
+    }
+};
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>myseg</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

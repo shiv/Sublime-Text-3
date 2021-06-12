@@ -5,11 +5,24 @@
 	{ "keys": ["alt+shift+down"], "command": "duplicate_line" },
 	{ "keys": ["ctrl+alt+s"], "command": "save_all" },
 	{ "keys": ["ctrl+shift+o"], "command": "prompt_open_folder" },
-	{ "keys": ["ctrl+shift+,"], "command": "add_date" },
 	{ "keys": ["ctrl+q"], "command": "cancel_build" },
 	{ "keys": ["ctrl+shift+r"], "command": "build", "args": {"variant": "Run"} },
 	{ "keys": ["ctrl+shift+c"], "command": "build", "args": {"variant": "Compile"} },
 	{ "keys": ["ctrl+shift+e"], "command": "build", "args": {"variant": "Debug"} },
 	{ "keys": ["ctrl+shift+i"], "command": "build", "args": {"variant": "Interactive"} },
 	{ "keys": ["ctrl+shift+a"], "command": "toggle_side_bar" },
+	{
+		"keys": ["ctrl+shift+,"], "command": "multicommand",
+      	"args": {
+        	"commands": [
+            	{"command": "add_date"},
+            	{"command": "run_macro_file",
+              		"args": {
+                		"file": "res://Packages/User/cpp_basic.sublime-macro"
+              		}
+            	}
+        	]
+      	}
+    },
+	{ "keys": ["ctrl+shift+g"], "command": "toggle" },
 ]

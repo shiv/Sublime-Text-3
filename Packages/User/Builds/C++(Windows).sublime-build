@@ -23,7 +23,7 @@
         },
         { 
             "name": "Debug", 
-            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-DLOCAL", "-Wshadow", "-Wall", "-D_GLIBCXX_DEBUG", "&&" , "${file_base_name}.exe"],
+            "cmd": ["g++", "-std=c++17", "${file}", "-o", "${file_base_name}.exe", "-DLOCAL", "-Wshadow", "-Wall", "-D_GLIBCXX_DEBUG"],
             "shell":true
         }
     ]
