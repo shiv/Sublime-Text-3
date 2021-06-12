@@ -6,12 +6,12 @@
 	"installed_packages":
 	[
 		"A File Icon",
-		"AutoFoldCode",
 		"CppFastOlympicCoding",
 		"Formatter",
 		"Material Theme",
 		"Multicommand",
 		"Package Control",
 		"PackageResourceViewer",
+		"Terminal",
 	],
 }

@@ -1,0 +1,17 @@
+[
+    {
+        "command": "add_date"
+    },
+    {
+        "command": "insert_snippet",
+        "args": {
+            "name": "Packages/User/cpp_basic.sublime-snippet"
+        }
+    },
+    {
+        "command": "scroll_lines",
+        "args" : {
+            "amount": -30.0
+        }
+    },
+]
