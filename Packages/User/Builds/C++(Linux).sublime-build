@@ -1,31 +1,24 @@
 { 
-    "cmd": ["g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL"],
+    "target": "terminus_exec",
+    "cancel": "terminus_cancel_build",
+    "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL",
     "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$", 
     "selector": "source.c++, source.cpp", 
     "working_dir": "$file_path",
-    "shell" : true,
 
     "variants": 
     [
     	{
     		"name":"Compile",
-            "cmd": ["g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL -O2"],
-    		"shell": true
+            "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL -O2",
     	},
     	{
     		"name":"Run",
-            "cmd": ["g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL -O2 && \"./${file_base_name}\".out"],
-    		"shell": true
+            "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL -O2 && \"./${file_base_name}\".out",
     	},
         { 
-            "name": "Interactive", 
-            "cmd": ["g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -O2 && gnome-terminal"],
-            "shell": true 
-        },
-        { 
             "name": "Debug", 
-            "cmd": ["g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL -Wshadow -Wall -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG"],
-            "shell":true
+            "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_base_name}\".out -DLOCAL -Wshadow -Wall -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG",
         }
     ]
 }

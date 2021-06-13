@@ -38,5 +38,11 @@
             "contents": "for (int ${2:i} = 0; $2 < ${1:count}; ${3:++$2})$0",
             "kind": "snippet",
         },
+        {
+            "trigger": "case",
+            "annotation": "caseno",
+            "contents": "cout << \"Case #\" << i << \": \";$0",
+            "kind": "snippet",
+        },
     ]
 }

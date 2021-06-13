@@ -27,14 +27,14 @@ template <typename T, typename Head, typename... Tail> T amin(T& a, Head b, Tail
 const int inf = 1e18L + 5, mod = 1e9 + 7, N = 3e5 + 5;
 
 void preSolve(int &t) {
-    $1// cin >> t;
+    $1cin >> t;
 }
 
 void solve(int tc = 0) {
-    $2// int n;
-    // cin >> n;
-    // vector<int> a(n);
-    // cin >> a;
+    int n$2;
+    cin >> n$3;
+    vector<int> a(n)$4;
+    cin >> a$5;
 
     $0
 }
@@ -44,7 +44,6 @@ signed main() {
     int t = 1;
     preSolve(t);
     for (int i = 1; i <= t; i++) {
-        // cout << "Case #" << i << ": ";
         solve(i);
     }
     return 0;
