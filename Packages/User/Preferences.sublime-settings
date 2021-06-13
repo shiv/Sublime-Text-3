@@ -5,7 +5,7 @@
 		"*.out"
 	],
 	"font_face": "Source Code Pro Regular",
-	"font_size": 12,
+	"font_size": 11,
 	"ignored_packages":
 	[
 		"Vintage",
@@ -17,4 +17,11 @@
 	"trim_trailing_white_space_on_save": true,
 	"caret_style": "smooth",
 	"word_wrap": true,
+	"shift_tab_unindent": true,
+	"auto_complete_use_index": false,
+	"ignored_snippets": ["C++/*"],
+	// "auto_hide_menu": true,
+	// "auto_hide_tabs": true,
+	// "auto_hide_status_bar": true,
+	"trim_automatic_white_space": false,
 }

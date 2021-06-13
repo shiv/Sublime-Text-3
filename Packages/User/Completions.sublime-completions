@@ -1,0 +1,42 @@
+{
+    "scope": "source.c++",
+    "completions": [
+        "first",
+        "second",
+        "vector",
+        "push_back",
+        "empalce_back",
+        "emplace",
+        "insert",
+        {
+            "trigger": "pair",
+            "annotation": "pair<>",
+            "contents": "pair<${1:int}, ${2:int}> ${3:p}$0;",
+            "kind": "snippet",
+        },
+        {
+            "trigger": "vv",
+            "annotation": "vector<vector<int>>",
+            "contents": "vector<vector<${1:int}>>$0",
+            "kind": "snippet",
+        },
+        {
+            "trigger": "vii",
+            "annotation": "vector<vector<>>",
+            "contents": "vector<vector<int>>$0",
+            "kind": "snippet",
+        },
+        {
+            "trigger": "all",
+            "annotation": ".begin(), .end()",
+            "contents": "${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), ${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()",
+            "kind": "snippet",
+        },
+        {
+            "trigger": "for",
+            "annotation": "For loop",
+            "contents": "for (int ${2:i} = 0; $2 < ${1:count}; ${3:++$2})$0",
+            "kind": "snippet",
+        },
+    ]
+}

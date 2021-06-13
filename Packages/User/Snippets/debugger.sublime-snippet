@@ -20,5 +20,5 @@ template <typename Head, typename... Tail> void debug_out(Head H, Tail... T) { o
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>debugger</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
+	<scope>source.c++</scope>
 </snippet>

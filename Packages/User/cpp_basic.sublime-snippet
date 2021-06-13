@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 using namespace std;
 
 bool debug;
@@ -36,7 +36,7 @@ void solve(int tc = 0) {
     // vector<int> a(n);
     // cin >> a;
 
-
+    $0
 }
 
 signed main() {

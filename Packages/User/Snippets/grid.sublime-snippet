@@ -13,5 +13,5 @@ bool possible(int x,int y, int n, int m) {
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>grid</tabTrigger>
     <!-- Optional: Set a scope to limit where the snippet will trigger -->
-    <!-- <scope>source.python</scope> -->
+    <scope>source.c++</scope>
 </snippet>

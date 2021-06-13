@@ -9,7 +9,6 @@
 	{ "keys": ["ctrl+shift+r"], "command": "build", "args": {"variant": "Run"} },
 	{ "keys": ["ctrl+shift+c"], "command": "build", "args": {"variant": "Compile"} },
 	{ "keys": ["ctrl+shift+e"], "command": "build", "args": {"variant": "Debug"} },
-	{ "keys": ["ctrl+shift+i"], "command": "build", "args": {"variant": "Interactive"} },
 	{ "keys": ["ctrl+shift+,"], "command": "run_macro_file", "args": { "file": "res://Packages/User/Macros/cpp_basic.sublime-macro", } },
 	{ "keys": ["ctrl+q"], "command": "cancel_build" },
 	{ "keys": ["ctrl+alt+c"], "command": "open_terminal", "args": { "paths": ["C:/Users/Shivam Gupta/Documents/CP_Sublime_Text/CF_Contests"] },	},
