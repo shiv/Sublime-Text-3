@@ -3,7 +3,7 @@
 	{
 		"clangd":
 		{
-			"enabled": true
-		}
+			"enabled": false,
+		},
 	},
 }

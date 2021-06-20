@@ -12,5 +12,5 @@ Packages/*
 !Packages/User/
 !Packages/CppFastOlympicCoding/
 !Packages/FastOlympicCodingHook/
-!Packages/Terminal/
+!Packages/SublimeAStyleFormatter/
 autocommit.*
