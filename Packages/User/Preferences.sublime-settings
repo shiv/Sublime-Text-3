@@ -2,10 +2,13 @@
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
 	"file_exclude_patterns":
 	[
-		"*.out", "*.cpp__tests", "*.exe"
+		"*.DS_Store",
+		"*.out",
+		"*.cpp__tests",
+		"*.exe"
 	],
 	"font_face": "Source Code Pro Regular",
-	"font_size": 11,
+	"font_size": 13,
 	"ignored_packages":
 	[
 		"Vintage",
