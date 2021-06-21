@@ -1,3 +1,16 @@
 [
+    { "keys": ["ctrl+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["alt+up"], "command": "swap_line_up" },
+    { "keys": ["alt+down"], "command": "swap_line_down" },
+    { "keys": ["alt+shift+down"], "command": "run_macro_file", "args": {"file": "res://Packages/User/Macros/Duplicate Line.sublime-macro"} },
+    { "keys": ["ctrl+alt+s"], "command": "save_all" },
     { "keys": ["ctrl+shift+a"], "command": "toggle_side_bar" },
+    { "keys": ["ctrl+shift+o"], "command": "prompt_open_folder" },
+    { "keys": ["ctrl+shift+r"], "command": "build", "args": {"variant": "Run"} },
+    { "keys": ["ctrl+shift+c"], "command": "build", "args": {"variant": "Compile"} },
+    { "keys": ["ctrl+shift+e"], "command": "build", "args": {"variant": "Debug"} },
+    { "keys": ["ctrl+shift+,"], "command": "run_macro_file", "args": { "file": "res://Packages/User/Macros/cpp_basic.sublime-macro", } },
+    { "keys": ["ctrl+q"], "command": "cancel_build" },
+    { "keys": ["ctrl+shift+u"], "command": "open_dir", "args": {"dir": "$packages/User"} },
+    { "keys": ["alt+shift+t"], "command": "close_other_tabs" },
 ]

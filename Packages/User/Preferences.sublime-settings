@@ -23,8 +23,8 @@
 	"shift_tab_unindent": true,
 	"auto_complete_use_index": false,
 	"ignored_snippets": ["C++/*"],
-	// "auto_hide_menu": true,
-	// "auto_hide_tabs": true,
-	// "auto_hide_status_bar": true,
+	"auto_hide_menu": true,
+	"auto_hide_tabs": true,
+	"auto_hide_status_bar": true,
 	"trim_automatic_white_space": false,
 }

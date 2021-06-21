@@ -1,0 +1,24 @@
+{
+    "target": "terminus_exec",
+    "cancel": "terminus_cancel_build",
+    "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\"",
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "working_dir": "${file_path}",
+    "selector": "source.c++, source.cpp",
+
+    "variants":
+    [
+        {
+            "name":"Compile",
+            "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -O2",
+        },
+        {
+            "name":"Run",
+            "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -DLOCAL -O2 && \"${file_path}/${file_base_name}.out\"",
+        },
+        {
+            "name": "Debug",
+            "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -Wshadow -Wall -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG"
+        }
+    ]
+}

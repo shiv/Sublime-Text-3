@@ -9,24 +9,6 @@
         "emplace",
         "insert",
         {
-            "trigger": "pair",
-            "annotation": "pair<>",
-            "contents": "pair<${1:int}, ${2:int}> ${3:p}$0;",
-            "kind": "snippet",
-        },
-        {
-            "trigger": "vv",
-            "annotation": "vector<vector<int>>",
-            "contents": "vector<vector<${1:int}>>$0",
-            "kind": "snippet",
-        },
-        {
-            "trigger": "vii",
-            "annotation": "vector<vector<>>",
-            "contents": "vector<vector<int>>$0",
-            "kind": "snippet",
-        },
-        {
             "trigger": "all",
             "annotation": ".begin(), .end()",
             "contents": "${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), ${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()",
@@ -41,7 +23,7 @@
         {
             "trigger": "case",
             "annotation": "caseno",
-            "contents": "cout << \"Case #\" << i << \": \";$0",
+            "contents": "cout << \"Case #\" << ${1:i} << \": \";$0",
             "kind": "snippet",
         },
     ]
