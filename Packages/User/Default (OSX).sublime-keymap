@@ -21,4 +21,7 @@
             "cwd": "${file_path:${folder}}"
         }
     },
+    {
+        "keys": ["ctrl+shift+i"], "command": "scratch_buffer", "args": {"syntax": "Packages/C++/C++.sublime-syntax"}
+    },
 ]
