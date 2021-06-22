@@ -13,4 +13,12 @@
     { "keys": ["ctrl+q"], "command": "cancel_build" },
     { "keys": ["ctrl+shift+u"], "command": "open_dir", "args": {"dir": "$packages/User"} },
     { "keys": ["alt+shift+t"], "command": "close_other_tabs" },
+    { "keys": ["ctrl+,"], "command": "toggle_terminus_panel",
+      "args": { "cwd": "${file_path:${folder}}" }
+    },
+    {
+        "keys": ["ctrl+alt+,"], "command": "terminus_open", "args": {
+            "cwd": "${file_path:${folder}}"
+        }
+    },
 ]
