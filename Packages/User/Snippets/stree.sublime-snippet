@@ -1,0 +1,157 @@
+<snippet>
+    <content><![CDATA[
+
+template<typename input>
+class segtree {
+public:
+
+    class node {
+    public:
+
+        int val, lazy;
+
+        friend istream& operator>>(istream &in, node &n) {
+            return in >> n.val;
+        }
+        friend ostream& operator<<(ostream &out, const node &n) {
+            return out << n.val;
+        }
+
+        // initial values
+        node(int _val = 0, int _lazy = 0) : val(_val), lazy(_lazy) {}
+
+        // merge operation
+        friend node merge(node &a, node &b) {
+            node c;
+            // c.val = a.val + b.val;
+            return c;
+        }
+
+        // lazy operation
+        void apply(int lx, int rx, const node &other) {
+            // val += other.lazy;
+            // lazy += other.lazy;
+        }
+    };
+
+    // neutral element
+    node identity_element = node(0);
+
+    // conversion of input to node
+    node make_node(input val, input lazy) {
+        node m = node(val, lazy);
+        return m;
+    }
+
+    int n, size;
+    vector<node> nodes;
+
+    inline void push(int x, int lx, int rx) {
+        if (nodes[x].lazy != identity_element.lazy) {
+            int m = (lx + rx) >> 1;
+            nodes[x << 1 | 0].apply(lx, m, nodes[x]);
+            nodes[x << 1 | 1].apply(m, rx, nodes[x]);
+            nodes[x].lazy = identity_element.lazy;
+        }
+    }
+
+    inline void pull(int x, int lx, int rx) {
+        nodes[x] = merge(nodes[x << 1 | 0], nodes[x << 1 | 1]);
+    }
+
+    void build(vector<input> &a, int x, int lx, int rx) {
+        if (rx - lx == 1) {
+            if (lx < n)
+                nodes[x] = make_node(a[lx], node().lazy);
+            return;
+        }
+        int m = (lx + rx) >> 1;
+        build(a, x << 1 | 0, lx, m);
+        build(a, x << 1 | 1, m, rx);
+        pull(x, lx, rx);
+    }
+
+    void build(vector<input> &a) {
+        build(a, 1, 0, size);
+    }
+
+    void update(int l, int r, input v, int x, int lx, int rx) {
+        if (lx >= r || l >= rx)
+            return;
+        if (lx >= l && rx <= r) {
+            nodes[x].apply(lx, rx, make_node(node().val, v));
+            return;
+        }
+        push(x, lx, rx);
+        int m = (lx + rx) >> 1;
+        update(l, r, v, x << 1 | 0, lx, m);
+        update(l, r, v, x << 1 | 1, m, rx);
+        pull(x, lx, rx);
+    }
+
+    node query(int l, int r, int x, int lx, int rx) {
+        if (lx >= r || l >= rx)
+            return identity_element;
+        if (lx >= l && rx <= r)
+            return nodes[x];
+        push(x, lx, rx);
+        int m = (lx + rx) >> 1;
+        node q1 = query(l, r, x << 1 | 0, lx, m);
+        node q2 = query(l, r, x << 1 | 1, m, rx);
+        pull(x, lx, rx);
+        return merge(q1, q2);
+    }
+
+    int kth_one(int k, int x, int lx, int rx) {
+        if (rx - lx == 1) {
+            return lx;
+        }
+        push(x, lx, rx);
+        int m = (lx + rx) >> 1;
+        if (k <= nodes[x << 1 | 0].val)
+            return kth_one(k, x << 1 | 0, lx, m);
+        return kth_one(k - nodes[x << 1 | 0].val, x << 1 | 1, m, rx);
+    }
+
+    segtree(int _n) : n(_n) {
+        size = 1;
+        while (size < n) size <<= 1;
+        nodes.resize(2 * size);
+    }
+
+    segtree(vector<input> &a) : segtree(a.size()) {
+        build(a);
+    }
+
+    void update(int l, int r, input v) {
+        assert(0 <= l && l <= r && r < n);
+        update(l, r + 1, v, 1, 0, size);
+    }
+
+    void update(int i, input v) {
+        assert(0 <= i < n);
+        update(i, i, v);
+    }
+
+    node query(int l, int r) {
+        assert(0 <= l && l <= r && r < n);
+        return query(l, r + 1, 1, 0, size);
+    }
+
+    node query(int i) {
+        assert(0 <= i < n);
+        return query(i, i);
+    }
+
+    node kth_one(int k) {
+        assert(0 <= k);
+        return kth_one(k + 1, 1, 0, size);
+    }
+};
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>stree</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

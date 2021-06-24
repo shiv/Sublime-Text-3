@@ -14,3 +14,4 @@ Packages/*
 !Packages/FastOlympicCodingHook/
 !Packages/SublimeAStyleFormatter/
 autocommit.*
+*.DS_Store

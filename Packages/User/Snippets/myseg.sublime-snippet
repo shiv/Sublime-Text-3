@@ -1,34 +1,36 @@
 <snippet>
     <content><![CDATA[
-struct segnode {
+
+class segnode {
+public:
+
     int a;
     segnode(int _a = 0) : a(_a) {}
-    segnode operator+ (const segnode& other) const {
+
+    segnode operator+(const segnode &other) const {
         segnode ans;
         // merging of two segnodes
         ans.a = a + other.a;
         return ans;
     }
+
+    friend istream& operator>>(istream& in, segnode &n) {
+        return in >> n.a;
+    }
+    friend ostream& operator<<(ostream& out, const segnode &n) {
+        return out << n.a;
+    }
 };
 
-istream& operator>>(istream& in, segnode node) {
-    in >> node.a;
-    return in;
-}
-
-ostream& operator<<(ostream& out, segnode node) {
-    out << node.a;
-    return out;
-}
-
 template<typename input, typename node>
-struct segtree {
+class segtree {
+public:
 
     int size;
     vector<node> nodes;
 
     // neutral node
-    node identity_element = {0};
+    node identity_element = node(0);
 
     node merge(node &a, node &b) {
         // merging of two nodes
@@ -47,7 +49,8 @@ struct segtree {
         nodes.resize(2 * size);
     }
 
-    segtree(int n, vector<input> &a) {
+    segtree(vector<input> &a) {
+        int n = a.size();
         size = 1;
         while (size < n) size <<= 1;
         nodes.resize(2 * size);
@@ -102,6 +105,7 @@ struct segtree {
         return query(l, r, 1, 0, size);    
     }
 };
+
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>myseg</tabTrigger>

@@ -1,5 +1,5 @@
 [
-    { "keys": ["ctrl+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["super+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
     { "keys": ["alt+up"], "command": "swap_line_up" },
     { "keys": ["alt+down"], "command": "swap_line_down" },
     { "keys": ["alt+shift+down"], "command": "run_macro_file", "args": {"file": "res://Packages/User/Macros/Duplicate Line.sublime-macro"} },
@@ -13,15 +13,23 @@
     { "keys": ["ctrl+q"], "command": "cancel_build" },
     { "keys": ["ctrl+shift+u"], "command": "open_dir", "args": {"dir": "$packages/User"} },
     { "keys": ["alt+shift+t"], "command": "close_other_tabs" },
-    { "keys": ["ctrl+,"], "command": "toggle_terminus_panel",
-      "args": { "cwd": "${file_path:${folder}}" }
+    {
+        "keys": ["ctrl+,"],
+        "command": "toggle_terminus_panel",
+        "args": { "cwd": "${file_path:${folder}}" }
     },
     {
-        "keys": ["ctrl+alt+,"], "command": "terminus_open", "args": {
-            "cwd": "${file_path:${folder}}"
-        }
+        "keys": ["ctrl+alt+,"],
+        "command": "terminus_open",
+        "args": { "cwd": "${file_path:${folder}}" }
     },
     {
-        "keys": ["ctrl+shift+i"], "command": "scratch_buffer", "args": {"syntax": "Packages/C++/C++.sublime-syntax"}
+        "keys": ["ctrl+shift+i"],
+        "command": "scratch_buffer",
+        "args": {"syntax": "Packages/C++/C++.sublime-syntax"}
+    },
+    {
+        "keys": ["ctrl+shift+l"],
+        "command": "fast_olympic_coding_hook"
     },
 ]
