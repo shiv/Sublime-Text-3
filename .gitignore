@@ -1,17 +1,13 @@
 /*
 !Installed Packages/
 !Packages/
-*.exe
-*.bat
-*.out
-__pycache__
-AutoFoldCode.sublime-settings
-Packages/User/formatter.assets/
 Installed Packages/0_package_control_loader.sublime-package
 Packages/*
 !Packages/User/
 !Packages/CppFastOlympicCoding/
 !Packages/FastOlympicCodingHook/
-!Packages/SublimeAStyleFormatter/
 autocommit.*
+*.exe
+*.bat
+*.out
 *.DS_Store
