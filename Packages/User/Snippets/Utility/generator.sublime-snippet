@@ -11,6 +11,7 @@ template <typename Head> void print(Head H) { cout << H; print(); }
 template <typename Head, typename... Tail> void print(Head H, Tail... T) { cout << H << " "; print(T...); }
 
 static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+
 int rand_int(int a, int b) {
     return uniform_int_distribution<int>(a, b)(rng);
 }
@@ -25,9 +26,9 @@ void tree(int n) {
     for(int i = 1; i <= n; ++i) {
         perm[i] = i;
     }
-    random_shuffle(perm.begin() + 1, perm.end());
+    shuffle(perm.begin() + 1, perm.end(), rng);
 
-    random_shuffle(edges.begin(), edges.end()); // random order of edges
+    shuffle(edges.begin(), edges.end(), rng); // random order of edges
 
     for(pair<int, int> edge : edges) {
         int a = edge.first, b = edge.second;
