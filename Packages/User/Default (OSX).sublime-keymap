@@ -29,7 +29,7 @@
         "args": {"syntax": "Packages/C++/C++.sublime-syntax"}
     },
     {
-        "keys": ["ctrl+shift+l"],
+        "keys": ["super+shift+u"],
         "command": "fast_olympic_coding_hook"
     },
 ]

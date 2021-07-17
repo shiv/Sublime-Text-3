@@ -51,12 +51,12 @@ if platform.system() == "Linux":
 # subprocess.run([chrome, x], stdout=subprocess.DEVNULL)
 
 for problems in problem_tags:
-	problem_path = os.path.join(path,problems)
+	problem_path = os.path.join(path, problems)
 	print(problem_path)
 	with open(problem_path+".cpp", "a") as sec:
 		pass
 	problem_url = " " + url + "/problem/" + problems + " \"";
-	os.system('python automate.py' + problem_url + problem_path + "\"")
+	os.system('python3 automate.py' + problem_url + problem_path + "\"")
 	# x = url + '/problem/' + problems
 	# subprocess.run([chrome, x], stdout=subprocess.DEVNULL)
 
@@ -64,3 +64,6 @@ open(os.path.join(path,"in"), "a")
 open(os.path.join(path,"out"), "a")
 
 subprocess.run(["subl", path], stdout=subprocess.DEVNULL)
+# for problems in problem_tags[::-1]:
+# 	problem_path = os.path.join(path, problems)
+# 	subprocess.run(["subl", "-b", problem_path], stdout=subprocess.DEVNULL)

@@ -1,9 +1,9 @@
 import json
-import urllib.request
+import requests
 from bs4 import BeautifulSoup
 # from pywinauto import Application
 import os
-import sys 
+import sys
 
 if(len(sys.argv)<3):
 	exit()
@@ -17,7 +17,7 @@ if( url.find('https://codeforces.com/') == -1):
 	exit()
 else:
 	try:
-		page = urllib.request.urlopen(url, timeout=20)
+		page = requests.get(url, timeout=20).content
 	except:
 		print(url)
 		exit()

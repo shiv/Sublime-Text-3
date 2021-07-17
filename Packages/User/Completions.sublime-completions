@@ -1,13 +1,7 @@
 {
     "scope": "source.c++",
     "completions": [
-        "first",
-        "second",
         "vector",
-        "push_back",
-        "empalce_back",
-        "emplace",
-        "insert",
         {
             "trigger": "all",
             "annotation": ".begin(), .end()",
