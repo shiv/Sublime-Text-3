@@ -1,5 +1,8 @@
 [
     {
+        "command": "select_all"
+    },
+    {
         "command": "add_date"
     },
     {
@@ -10,7 +13,7 @@
     },
     {
         "command": "scroll_lines",
-        "args" : {
+        "args": {
             "amount": -100.0
         }
     },
