@@ -155,7 +155,7 @@ public:
         push(x, l, r);
         int y = (l + r) >> 1;
         int z = x + ((y - l + 1) << 1);
-        int res;
+        int res = -1;
         if (f(tree[z])) {
             res = find_last_knowingly(z, y + 1, r, f);
         }

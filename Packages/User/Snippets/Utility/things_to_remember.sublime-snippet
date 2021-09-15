@@ -16,6 +16,19 @@ struct compare {
     }
 };
 
+std::string binary = std::bitset<8>(n).to_string(); // convert decimal to binary
+unsigned long decimal = std::bitset<8>(binary).to_ulong();  // convert binary to decimal
+
+template<typename... T>
+void read(T&... args) {
+    ((cin >> args), ...);
+}
+
+template<typename... T>
+void write(T&&... args) { //rvalue reference is new to C++
+    ((cout << args << " "), ...);
+}
+
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>things_to_remember</tabTrigger>

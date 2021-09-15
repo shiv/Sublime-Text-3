@@ -3,7 +3,7 @@
         "command": "select_all"
     },
     {
-        "command": "add_date"
+        // "command": "add_date"
     },
     {
         "command": "insert_snippet",

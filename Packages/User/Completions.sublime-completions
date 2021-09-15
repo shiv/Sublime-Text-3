@@ -1,7 +1,6 @@
 {
     "scope": "source.c++",
     "completions": [
-        "vector",
         {
             "trigger": "all",
             "annotation": ".begin(), .end()",
