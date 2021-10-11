@@ -29,7 +29,7 @@
 			"name": "Python",
 			"extensions": ["py"],
 			"compile_cmd": null,
-			"run_cmd": "python '{source_file}'"
+			"run_cmd": "python3 '{source_file}'"
 		},
 		
 		{

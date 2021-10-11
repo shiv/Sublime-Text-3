@@ -22,10 +22,10 @@ const int inf = 1e18L + 5, mod = 1e9 + 7, N = 2e5 + 5;
 
 void solve() {
 
-    $1int n$3;
-    $1scan(n$4);
-    $1vector<int> a(n)$5;
-    $1scan(a$6);
+    int n$3;
+    scan(n$4);
+    vector<int> a(n)$5;
+    scan(a$6);
     $0
 }
 
@@ -36,7 +36,7 @@ signed main() {
     cout.tie(0);
 
     int t = 1;
-    $1cin >> t;$2
+    cin >> t;$2
 
     for (int tt = 1; tt <= t; tt++) {
         solve();

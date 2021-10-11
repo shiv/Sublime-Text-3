@@ -12,8 +12,14 @@
 		"GitGutter",
 		"LSP",
 		"Material Theme",
+		"Origami",
 		"Package Control",
 		"PackageResourceViewer",
+		"SnAPI",
 		"Terminus",
+	],
+	"repositories":
+	[
+		"https://raw.githubusercontent.com/STealthy-and-haSTy/SublimePackages/master/unreleased-packages.json"
 	],
 }

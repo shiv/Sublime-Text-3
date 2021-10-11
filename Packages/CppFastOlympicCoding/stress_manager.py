@@ -47,9 +47,12 @@ class StressManagerCommand(sublime_plugin.TextCommand):
 		text = 'test #{test_id}:\n{test_data}\ngood:\n{good_output}\nbad:\n{bad_output}'
 		text = text.format(
 			test_id=self.test_id,
-			test_data=self.shift_right(test_data),
-			good_output=self.shift_right(good_output),
-			bad_output=self.shift_right(bad_output)
+			# test_data=self.shift_right(test_data),
+			# good_output=self.shift_right(good_output),
+			# bad_output=self.shift_right(bad_output)
+			test_data=test_data,
+			good_output=good_output,
+			bad_output=bad_output
 		)
 		view.run_command('stress_manager', {
 			'action': 'insert_result',

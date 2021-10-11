@@ -349,4 +349,20 @@
 			"action": "sync_opdebugs"
 		}
 	},
+
+	// Stress Testing
+	{
+		"keys": ["ctrl+shift+s"],
+		"command": "stress_manager",
+		"args": {
+			"action": "make_stress"
+		}
+	},
+	{
+		"keys": ["ctrl+shift+w"],
+		"command": "stress_manager",
+		"args": {
+			"action": "stop_stress"
+		}
+	},
 ]
