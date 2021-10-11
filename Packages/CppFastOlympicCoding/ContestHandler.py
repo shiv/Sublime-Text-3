@@ -56,15 +56,16 @@ class ContestHandlerCommand(sublime_plugin.TextCommand):
 				self.init_problems(handler, contest_id, base, chr(ord(pid[0]) + 1))
 
 	def init_contest(self, handler, contest_id):
-		base = self.create_path(path.expanduser('~'), ['contest_base', handler.get_basename(), handler.get_contest_info(contest_id)['title']])
+		# base =` self.create_path(path.expanduser('~'), ['contest_base', handler.get_basename(), handler.get_contest_info(contest_id)['title']])
+		base = self.create_path(path.expanduser('~'), ['Documents/CP/', handler.get_basename(), handler.get_contest_info(contest_id)['title']])
 		sublime.run_command('new_window')
 		sublime.active_window().set_project_data({'folders': [{'path': base}]})
-		fsettings = path.join(base, '_contest.sublime-settings')
-		if not path.exists(fsettings):
-			settings = {
-				'contestID': contest_id
-			}
-			open(fsettings, 'w').write(sublime.encode_value(settings, True))
+		# fsettings = path.join(base, '_contest.sublime-settings')
+		# if not path.exists(fsettings):
+		# 	settings = {
+		# 		'contestID': contest_id
+		# 	}
+		# 	open(fsettings, 'w').write(sublime.encode_value(settings, True))
 
 		self.init_problems(handler, contest_id, base)
 
