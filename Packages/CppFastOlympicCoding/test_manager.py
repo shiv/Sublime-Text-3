@@ -12,7 +12,7 @@ from time import time
 import threading
 
 from .Modules.ProcessManager import ProcessManager
-from .settings import base_name, get_settings, root_dir
+from .settings import base_name, get_settings, root_dir, get_tests_file_path
 from .debuggers import debugger_info
 from .ContestHandlers import handler_info
 from .Highlight.CppVarHighlight import highlight
@@ -38,7 +38,6 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 	REGION_LINE_PROP = ['string', 'dot', \
 				sublime.DRAW_NO_FILL | sublime.DRAW_STIPPLED_UNDERLINE | \
 					sublime.DRAW_NO_OUTLINE | sublime.DRAW_EMPTY_AS_OVERWRITE]
-	TESTS_FILE_SUFFIX = '__tests'
 
 	# Test
 	# REGION_POS_PROP = REGION_UNKNOWN_PROP
@@ -126,7 +125,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 			else:
 				return str(runtime // 1000) + 's'
 
-		def get_config(self, i, pt, _cb_act, _out, view, running=False):	
+		def get_config(self, i, pt, _cb_act, _out, view, running=False):
 			if not running:
 				styles = get_test_styles(view)
 				content = open(root_dir + '/Highlight/test_config.html').read()
@@ -150,7 +149,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 				phantom = Phantom(Region(pt), content, sublime.LAYOUT_BLOCK, onclick)
 				return phantom
 			else:
-				styles = get_test_styles(view) 
+				styles = get_test_styles(view)
 				content = open(root_dir + '/Highlight/test_running.html').read()
 				content = content.format(
 					test_id=i
@@ -162,7 +161,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 				phantom = Phantom(Region(pt), content, sublime.LAYOUT_BLOCK, onclick)
 				return phantom
 
-		def get_accdec(self, i, pt, _cb_act, type, _view):	
+		def get_accdec(self, i, pt, _cb_act, type, _view):
 			styles = get_test_styles(_view)
 			content = open(root_dir + '/Highlight/test_accdec.html').read()
 			content = content.format(
@@ -231,14 +230,14 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 
 		def __pipe_listener(self, pipe, on_out, bfsize=None):
 			'''
-			wait for PIPE out 
+			wait for PIPE out
 			and calls on_out(`out`)
 			'''
 			return "!INDEV\n"
 
 		def __process_listener(self):
 			'''
-			wait for process out or died and 
+			wait for process out or died and
 			calls callbacks on_out, on_stop
 			'''
 			proc = self.process_manager
@@ -274,7 +273,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 
 			if type(self.process_manager) == ProcessManager:
 				self.on_status_change('RUNNING')
-				
+
 			self.proc_run = True
 			self.process_manager.run()
 			self.process_manager.write(tests[id].test_string)
@@ -332,7 +331,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 
 		def set_tests(self, tests):
 			self.tests.clear()
-			for test in tests:	
+			for test in tests:
 				self.tests.append(TestManagerCommand.Test(test))
 
 		def del_tests(self, to_del):
@@ -384,9 +383,6 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 		def terminate(self):
 			self.process_manager.terminate()
 
-	def get_tests_file_suffix(self):
-		return get_settings().get('tests_file_suffix') or self.TESTS_FILE_SUFFIX
-
 	def insert_text(self, edit, text=None):
 		v = self.view
 		expected = v.line(self.delta_input).end()
@@ -400,7 +396,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 		else:
 			to_shove = text
 			v.insert(edit, v.sel()[0].b, to_shove + '\n')
-		self.delta_input = v.sel()[0].b 
+		self.delta_input = v.sel()[0].b
 		self.tester.insert(to_shove + '\n')
 
 	def insert_cb(self, edit):
@@ -479,7 +475,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 			running = tester.proc_run and j == tester.running_test
 
 			if running:
-				pt += len(tester.tests[j].test_string) + len(tester.prog_out[j]) + 1 
+				pt += len(tester.tests[j].test_string) + len(tester.prog_out[j]) + 1
 			elif not tester.tests[j].fold:
 				pt += len(tester.tests[j].test_string) + len(tester.prog_out[j]) + 1
 
@@ -494,8 +490,8 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 		if tester.proc_run and event in {'test-click', 'test-edit', 'test-run'}:
 			sublime.status_message('can not {action} while process running'.format(action=event))
 			return
-		if event == 'test-click':	
-			self.toggle_fold(i)	
+		if event == 'test-click':
+			self.toggle_fold(i)
 		elif event == 'test-edit':
 			self.open_test_edit(i)
 		elif event == 'test-stop':
@@ -520,7 +516,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 
 			self.prepare_code_view()
 
-			tester.run_test(i)	
+			tester.run_test(i)
 			self.update_configs()
 
 	def on_accdec_action(self, i, event):
@@ -550,7 +546,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 
 	def get_next_title(self):
 		v = self.view
-		styles = get_test_styles(v) 
+		styles = get_test_styles(v)
 		content = open(root_dir + '/Highlight/test_next.html').read()
 
 		content = '<style>' + styles + '</style>' + content
@@ -558,7 +554,7 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 		def onclick(event, v=v):
 			v.run_command('test_manager', {
 				'action': 'new_test'
-			})	
+			})
 
 		phantom = Phantom(Region(self.view.size() - 1), content, sublime.LAYOUT_BLOCK, onclick)
 		return phantom
@@ -652,9 +648,8 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 			# self.fold_accept_tests()
 
 	def memorize_tests(self):
-		f = open(self.dbg_file + self.get_tests_file_suffix(), 'w')
-		f.write(sublime.encode_value([x.memorize() for x in (self.tester.get_tests())], True))
-		f.close()
+		with open(get_tests_file_path(self.dbg_file), 'w') as f:
+			f.write(sublime.encode_value([x.memorize() for x in (self.tester.get_tests())], True))
 
 	def on_insert(self, s):
 		self.view.run_command('test_manager', {'action': 'insert_opd_input', 'text': s})
@@ -944,15 +939,13 @@ class TestManagerCommand(sublime_plugin.TextCommand):
 
 		if not clr_tests:
 			try:
-				f = open(run_file + self.get_tests_file_suffix())
-				tests = [self.Test(x) for x in sublime.decode_value(f.read()) if x['test'].strip()]
-				f.close()
+				with open(get_tests_file_path(run_file)) as f:
+					tests = [self.Test(x) for x in sublime.decode_value(f.read()) if x['test'].strip()]
 			except:
 				tests = []
 		else:
-			f = open(run_file + self.get_tests_file_suffix(), 'w')
-			f.write('[]')
-			f.close()
+			with open(get_tests_file_path(run_file), 'w') as f:
+				f.write('[]')
 			tests = []
 		file_ext = path.splitext(run_file)[1][1:]
 
