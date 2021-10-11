@@ -49,10 +49,7 @@ class PyLLDBDebugger(Debugger):
 		# print('interaction: ', action)
 		proc_dbg = self.proc_dbg
 		proc_dbg.stdin.write((action + '\n').encode())
-		try:
-			proc_dbg.stdin.flush()
-		except (BrokenPipeError, IOError):
-		    pass
+		proc_dbg.stdin.flush()
 		return decode(proc_dbg.stdout.readline())
 
 	def __listen(self):
