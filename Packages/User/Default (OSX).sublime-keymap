@@ -35,5 +35,11 @@
     {
         "keys": ["super+k", "super+m"],
         "command": "delete_current_file"
+    },
+    {   "keys": ["ctrl+w"],
+        "command": "close_file"
+    },
+    {
+        "keys" : ["ctrl+alt+c"], "command": "file_diff_clipboard"
     }
 ]

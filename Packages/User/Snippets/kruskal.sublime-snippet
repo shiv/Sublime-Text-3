@@ -1,0 +1,67 @@
+<snippet>
+    <content><![CDATA[
+
+class dsu {
+public:
+    vector<int> p;
+    int n;
+
+    dsu(int _n) : n(_n) {
+        p.assign(n, 0);
+        iota(p.begin(), p.end(), 0);
+    }
+
+    inline int get(int x) {
+        return x == p[x] ? x : (p[x] = get(p[x]));
+    }
+
+    inline bool unite(int x, int y) {
+        x = get(x);
+        y = get(y);
+        if (x != y) {
+            p[y] = x;
+            return true;
+        }
+        return false;
+    }
+};
+
+struct Edge {
+    int u, v, w;
+    Edge () : Edge(-1, -1, inf) {}
+    Edge (int _u, int _v, int _w) : u(_u), v(_v), w(_w) {}
+    bool operator<(const Edge &other) {
+        return w < other.w;
+    }
+    friend istream& operator>>(istream& in, Edge &e) {
+        return in >> e.w >> e.u >> e.v;
+    }
+    friend ostream& operator<<(ostream& out, const Edge &e) {
+        return out << e.u << ' ' << e.v;
+    }
+};
+
+pair<int, vector<Edge>> Kruskal(int n, vector<Edge> edges) {
+
+    sort(edges.begin(), edges.end());
+    dsu d(n);
+
+    int cost = 0;
+    vector<Edge> res;
+    for (auto &e : edges) {
+        if (d.get(e.u) != d.get(e.v)) {
+            res.emplace_back(e);
+            cost += e.w;
+            d.unite(e.u, e.v);
+        }
+    }
+
+    return make_pair(cost, res);
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>kruskal</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

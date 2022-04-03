@@ -1,0 +1,23 @@
+<snippet>
+    <content><![CDATA[
+
+int power (int n, int exp, int m) {
+    int res = 1;
+    n %= m;
+    while (exp) {
+        if (exp & 1) {
+            res = res * n % m;
+        }
+        exp >>= 1;
+        n = n * n % mod;
+    }
+    return res;
+}
+
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>inverse</tabTrigger>w
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

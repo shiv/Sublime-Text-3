@@ -1,0 +1,61 @@
+<snippet>
+    <content><![CDATA[
+
+struct Edge {
+    int u, v, w;
+    Edge () : Edge(-1, -1, inf) {}
+    Edge (int _u, int _v, int _w) : u(_u), v(_v), w(_w) {}
+    bool operator>(const Edge &other) const {
+        return w > other.w;
+    }
+    bool operator<(const Edge &other) const {
+        return w < other.w;
+    }
+    friend istream& operator>>(istream& in, Edge &e) {
+        return in >> e.u >> e.v >> e.w;
+    }
+    friend ostream& operator<<(ostream& out, const Edge& e) {
+        return out << e.u << ' ' << e.v;
+    }
+};
+
+pair<int, vector<Edge>> Prim(int n, vector<Edge> edges) {
+    int cost = 0;
+    vector<vector<Edge>> g(n);
+    for (Edge &e : edges) {
+        g[e.u].emplace_back(e);
+        g[e.v].emplace_back(e);
+    }
+    vector<bool> vis(n, false);
+    priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+    pq.push(Edge(0, 0, 0));
+    vector<Edge> mst;
+    while (mst.size() != n - 1) {
+        if (pq.empty()) {
+            return make_pair(-1, vector<Edge>());
+        }
+        auto curr_edge = pq.top();
+        pq.pop();
+        auto [u, v, w] = curr_edge;
+        if (vis[v]) {
+            continue;
+        }
+        vis[v] = true;
+        if (u != v) {
+            cost += w;
+            mst.emplace_back(curr_edge);
+        }
+        for (Edge &e : g[v]) {
+            pq.push(e);
+        }
+    }
+
+    return make_pair(cost, mst);
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>prim</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

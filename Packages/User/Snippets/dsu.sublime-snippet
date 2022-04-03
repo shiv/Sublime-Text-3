@@ -2,28 +2,32 @@
     <content><![CDATA[
 class dsu {
 public:
-    vector<int> p;
+    vector<int> p, r;
     int n;
 
     dsu(int _n) : n(_n) {
-        p.resize(n);
+        p.assign(n, 0);
+        r.assign(n, 0);
         iota(p.begin(), p.end(), 0);
     }
 
     inline int get(int x) {
-        return (x == p[x] ? x : (p[x] = get(p[x])));
+        return x == p[x] ? x : (p[x] = get(p[x]));
     }
 
     inline bool unite(int x, int y) {
         x = get(x);
         y = get(y);
         if (x != y) {
-            p[x] = y;
+            if (r[x] < r[y]) swap(x, y);
+            p[y] = x;
+            if (r[x] == r[y]) r[x]++;
             return true;
         }
         return false;
     }
 };
+
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>dsu</tabTrigger>

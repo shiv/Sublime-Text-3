@@ -1,0 +1,33 @@
+{      
+    "target": "fast_olympic_coding_on_finish",
+    "cancel": {"kill": true},
+        
+    "osx": {
+        "shell_cmd": "dbcompile \"${file_base_name}\"",
+    },
+    "linux": {
+        "shell_cmd": "dbcompile \"${file_base_name}\"",
+    },
+    "windows": {
+        "shell_cmd": "g++ -std=c++17 -Wshadow -Wall \"${file}\" -o  \"${file_base_name}\" \"-Wl,--stack=268435456\" -DLOCAL -g -D_GLIBCXX_DEBUG &&  \"${file_base_name}\"",
+    },
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$", 
+    "selector": "source.c++, source.cc, source.cpp, source.c", 
+    "working_dir": "$file_path",
+
+    "variants": 
+    [
+        {
+            "name":"Fast Compile And Run",
+            "osx": {
+                "shell_cmd": "compile \"${file_base_name}\"",
+            },  
+            "linux": {
+                "shell_cmd": "compile \"${file_base_name}\"",
+            },
+            "windows": {
+                "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_base_name}\" \"-Wl,--stack=268435456\" -DLOCAL -O2 && \"${file_base_name}\"",
+            },
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+<snippet>
+    <content><![CDATA[
+// find occurences of `pat` in `text`
+int KMP(string text, string pat) {
+    int ret = 0;
+    
+    // Preprocessing lps
+    int m = pat.length();
+    vector<int> lps(m, 0);
+    
+    for (int i = 1, len = 0; i < m; ) {
+        if (pat[i] == pat[len]) {
+            lps[i] = ++len;
+            i++;
+        }
+        else {
+            if (len != 0) {
+                len = lps[len - 1];
+            }
+            else {
+                lps[i] = len;
+                i++;
+            }
+        }
+    }
+    
+    // finding pattern in text using lps
+    int n = text.length();
+    
+    for (int i = 0, j = 0, next_i = 0; i < n; ) {
+        if (pat[j] == text[i]) {
+            j++, i++;
+        }
+        if (j == m) {
+            // pattern found
+            ret++;
+            
+            /*                             
+                 i  
+            ("abababdef",
+             "abab")
+                 j
+                                       
+                 |
+                \|/
+                                           
+                 i
+            ("abababdef", 
+               "abab")
+                 j
+            */
+                        
+            j = lps[j - 1];
+        }
+        else if (i < n && pat[j] != text[i]) {
+            if (j != 0)
+                j = lps[j - 1];
+            else
+                i++;
+        }
+    }
+    return ret;
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>KMP</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

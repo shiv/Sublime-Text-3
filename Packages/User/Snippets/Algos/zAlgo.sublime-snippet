@@ -1,0 +1,44 @@
+<snippet>
+    <content><![CDATA[
+
+vector<int> zAlgo(string text, string pat) {
+
+    string str = pat + '$' + text;
+    int n = str.length();
+    vector<int> z(n);
+
+    for (int i = 1, l = 0, r = 0; i < n; ++i) {
+        if (i > r) {
+            l = r = i;
+            while (r < n && str[r - l] == str[r])
+                r++;
+            z[i] = r - l;
+            r--;
+        }
+        else {
+            if (z[i - l] < r - i + 1)
+                z[i] = z[i - l];
+            else {
+                l = i;
+                while (r < n && str[r - l] == str[r])
+                    r++;
+                z[i] = r - l;
+                r--;
+            }
+        }
+    }
+
+    vector<int> res;
+    for (int i = 0; i < n; ++i)
+        if (z[i] == pat.length())
+            res.push_back(i - pat.size() - 1);
+
+    return res;
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>zAlgo</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

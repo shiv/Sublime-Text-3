@@ -1,0 +1,38 @@
+<snippet>
+    <content><![CDATA[
+
+bool spfa(int n, vector<vector<pair<int, int>>> &g) {
+    vector<int> dis(n, 0);
+    vector<int> cnt(n, 0);
+    vector<bool> inqueue(n, true);
+    queue<int> q;
+    for (int i = 0; i < n; i++) {
+        q.push(i);
+    }
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        inqueue[u] = false;
+        for (auto &[v, w] : g[u]) {
+            if (dis[v] > dis[u] + w) {
+                cnt[v] = cnt[u] + 1;
+                if (cnt[v] == n) {
+                    return true;
+                }
+                if (!inqueue[v]) {
+                    q.push(v);
+                    inqueue[v] = true;
+                }
+                dis[v] = dis[u] + w;
+            }
+        }
+    }
+    return false;
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>spfa</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

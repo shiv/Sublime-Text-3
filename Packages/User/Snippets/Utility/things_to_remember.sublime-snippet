@@ -29,6 +29,23 @@ void write(T&&... args) { //rvalue reference is new to C++
     ((cout << args << " "), ...);
 }
 
+/*
+There is no difference. They both declare "a" to be an integer that cannot be changed.
+
+The place where differences start to appear is when you use pointers.
+
+Both of these:
+    const int *a
+    int const *a
+declare "a" to be a pointer to an integer that doesn't change. "a" can be assigned to, but "*a" cannot.
+
+    int * const a
+declares "a" to be a constant pointer to an integer. "*a" can be assigned to, but "a" cannot.
+
+    const int * const a
+declares "a" to be a constant pointer to a constant integer. Neither "a" nor "*a" can be assigned to.
+*/
+
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>things_to_remember</tabTrigger>

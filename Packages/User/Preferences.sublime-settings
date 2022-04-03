@@ -2,13 +2,11 @@
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
 	"file_exclude_patterns":
 	[
-		"*.DS_Store",
-		"*.out",
-		"*.cpp__tests",
-		"*.exe"
+		"*.pyc", "*.pyo", "*.exe", "*.dll", "*.obj","*.o", "*.a", "*.lib", "*.so", "*.dylib", "*.ncb", "*.sdf", "*.suo", "*.pdb", "*.idb", ".DS_Store", ".directory", "desktop.ini", "*.class", "*.psd", "*.db", "*.sublime-workspace",
+		"*.DS_Store", "*.out", "*.cpp__tests", "*.exe",
 	],
 	"font_face": "Source Code Pro Medium",
-	"font_size": 16,
+	"font_size": 15,
 	"ignored_packages":
 	[
 		"Markdown",
