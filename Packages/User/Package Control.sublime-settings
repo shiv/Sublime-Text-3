@@ -6,8 +6,10 @@
 	"installed_packages":
 	[
 		"A File Icon",
+		"CompetitiveProgrammingParser",
 		"CppFastOlympicCoding",
 		"FileDiffs",
+		"Formatter",
 		"Git",
 		"GitGutter",
 		"LSP",

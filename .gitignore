@@ -11,3 +11,4 @@ autocommit.*
 *.bat
 *.out
 *.DS_Store
+*.assets
