@@ -8,7 +8,7 @@ except ImportError:
 	pass
 from .test_manager import TestManagerCommand
 from sublime import Region
-from .settings import get_tests_file_path
+from .settings import get_tests_file_path, get_settings
 
 handlers = [codeforces]
 
@@ -32,7 +32,7 @@ class ContestHandlerCommand(sublime_plugin.TextCommand):
 			if not path.exists(file_name):
 				file = open(file_name, 'w')
 				file.close()
-			tests = []
+			tests = [] 
 			for i in range(len(inputs)):
 				tests.append({
 					'test': inputs[i],
@@ -56,16 +56,15 @@ class ContestHandlerCommand(sublime_plugin.TextCommand):
 				self.init_problems(handler, contest_id, base, chr(ord(pid[0]) + 1))
 
 	def init_contest(self, handler, contest_id):
-		# base =` self.create_path(path.expanduser('~'), ['contest_base', handler.get_basename(), handler.get_contest_info(contest_id)['title']])
-		base = self.create_path(path.expanduser('~'), ['Documents/CP/', handler.get_basename(), handler.get_contest_info(contest_id)['title']])
+		base = self.create_path(path.expanduser('~'), ['contest_base', handler.get_basename(), handler.get_contest_info(contest_id)['title']])
 		sublime.run_command('new_window')
 		sublime.active_window().set_project_data({'folders': [{'path': base}]})
-		# fsettings = path.join(base, '_contest.sublime-settings')
-		# if not path.exists(fsettings):
-		# 	settings = {
-		# 		'contestID': contest_id
-		# 	}
-		# 	open(fsettings, 'w').write(sublime.encode_value(settings, True))
+		fsettings = path.join(base, '_contest.sublime-settings')
+		if not path.exists(fsettings):
+			settings = {
+				'contestID': contest_id
+			}
+			open(fsettings, 'w').write(sublime.encode_value(settings, True))
 
 		self.init_problems(handler, contest_id, base)
 
@@ -106,9 +105,14 @@ class ContestHandlerCommand(sublime_plugin.TextCommand):
 			last = path.basename(self.view.file_name())
 			problemID = path.splitext(last)[0]
 			print('args', settings, problemID)
-			def reduce(settings=settings, problemID=problemID, code=code):
+			def reduce(
+					settings=settings,
+					problemID=problemID,
+					code=code,
+					username=get_settings().get('cf_username'),
+					password=get_settings().get('cf_password')):
 				perform_submission(settings['contestID'], problemID, code, {
-						'username': settings['cf_username'], 'password': settings['cf_password']
+						'username': username, 'password': password
 					}
 				)
 			sublime.set_timeout_async(reduce, 10)

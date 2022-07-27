@@ -32,7 +32,7 @@ Fast Olympic Coding plugin for Sublime Text 3
 
 ### StressTesting
  ![StressTesting](ScreenShots/Stress.gif)
-
+ 
  * To stress test a solution, you need to implement the three following files:
    * `<name>.cpp` - program that works incorrect
    * `<name>__Good.cpp` - program that works correct
@@ -47,10 +47,10 @@ Fast Olympic Coding plugin for Sublime Text 3
 
 ### CppLint
  ![CppLint](ScreenShots/CppLint.png)
-
+ 
  * Error highlighting works in real-time
  * Specify custom compile command in the settings file
-
+ 
 ### Debugger
  ![Debugger](ScreenShots/Debugger.png)
 
