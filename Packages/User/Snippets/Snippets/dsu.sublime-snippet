@@ -1,0 +1,59 @@
+<snippet>
+    <content><![CDATA[
+class dsu {
+public:
+    ${1:vector<int> p, sz;
+    vector<vector<int>> components;
+    int cc;
+    int n;
+
+    dsu(int _n) : n(_n) {
+        cc = n;
+        p.resize(n);
+        iota(p.begin(), p.end(), 0);
+        sz.resize(n, 1);
+        components.resize(n);
+    \}
+
+    inline int get(int x) {
+        return (x == p[x] ? x : (p[x] = get(p[x])));
+    \}
+
+    inline bool unite(int x, int y) {
+        x = get(x), y = get(y);
+        if (x == y)
+            return false;
+        if (sz[x] < sz[y])
+            swap(x, y);
+        p[y] = x;
+        sz[x] += sz[y];
+        sz[y] = 0;
+        cc--;
+        return true;
+    \}
+    
+    void unite(const vector<pair<int, int>>& edges) {
+        for (auto &[u, v] : edges)
+            unite(u, v);
+    \}
+    
+    void unite(const vector<int> &U, const vector<int> &V) {
+        int m = U.size();
+        assert(int(V.size()) == m);
+        for (int i = 0; i < m; i++)
+            unite(U[i], V[i]);
+    \}
+    
+    void calculate_components () {
+        for (int i = 0; i < n; i++) {
+            components[get(i)].emplace_back(i);
+        \}
+    \}}
+};$0
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_dsu</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

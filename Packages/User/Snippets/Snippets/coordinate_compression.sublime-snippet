@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+template<typename T>
+int coordinate_compress(vector<T>& a) {
+    set<T> s(a.begin(), a.end());
+    map<T, int> mp;
+    int cnt = 0;
+    for(auto &x : s) mp[x] = cnt++;
+    for(auto &x : a) x = mp[x];
+    return cnt;
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_coordinate_compression</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

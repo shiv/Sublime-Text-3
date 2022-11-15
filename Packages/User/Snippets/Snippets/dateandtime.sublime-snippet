@@ -1,0 +1,61 @@
+<snippet>
+    <content><![CDATA[
+/*
+struct tm {
+    int tm_sec;   // seconds of minutes from 0 to 61
+    int tm_min;   // minutes of hour from 0 to 59
+    int tm_hour;  // hours of day from 0 to 24
+    int tm_mday;  // day of month from 1 to 31
+    int tm_mon;   // month of year from 0 to 11
+    int tm_year;  // year since 1900
+    int tm_wday;  // days since sunday
+    int tm_yday;  // days since January 1st
+    int tm_isdst; // hours of daylight savings time
+}
+*/
+
+map<string, int> month_number { {"Jan", 1}, {"Feb", 2}, {"Mar", 3}, {"Apr", 4},
+                                {"May", 5}, {"Jun", 6}, {"Jul", 7}, {"Aug", 8},
+                                {"Sep", 9}, {"Oct", 10}, {"Nov", 11}, {"Dec", 12} };
+                                
+map<int, string> month_name{{1, "Jan"}, {2, "Feb"}, {3, "Mar"}, {4, "Apr"},
+                            {5, "May"}, {6, "Jun"}, {7, "Jul"}, {8, "Aug"}, 
+                            {9, "Sep"}, {10, "Oct"}, {11, "Nov"}, {12, "Dec"}};
+
+// returns the `date` and `time` after n seconds of `now`
+tm* time_after_n_seconds(tm* now, int64_t n) {
+    // get the no of seconds elapsed
+    time_t elapsed = mktime(now);
+
+   // manipulate the no of seconds `elapsed` as required
+   elapsed += n;
+
+   tm* then = localtime(&elapsed);
+   return then;
+}
+
+// returns the `date` and `time` after n seconds of given moment
+tm* time_after_n_seconds (int day, int month, int year, int hh, int mm, int ss, int64_t n) {
+   
+   // write input `date` and `time` in the std::tm format
+   tm now = {ss, mm, hh, // second, minute, hour
+            day, month - 1, year - 1900 }; // 1-based day, 0-based month, year since 1900
+  
+   return time_after_n_seconds(&now, n);
+}
+
+int64_t Hash(tm* now) {
+    return  now->tm_sec + now->tm_min * 1e2 + now->tm_hour * 1e4 +
+            now->tm_mday * 1e6 + (now->tm_mon + 1) * 1e8 + (1900 + now->tm_year) * 1e10;
+}
+
+ostream& operator<<(ostream& out, tm* now) {
+    out << now->tm_mday << " " << (now->tm_mon + 1) << " " << (1900 + now->tm_year) << " " << now->tm_hour << " " << now->tm_min << " " << now->tm_sec << endl;
+    return out; 
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_dateandtime</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

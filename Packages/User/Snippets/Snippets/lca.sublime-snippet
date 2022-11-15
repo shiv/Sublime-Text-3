@@ -1,0 +1,58 @@
+<snippet>
+    <content><![CDATA[
+    const int lvl = 19;
+    
+    vector<vector<int>> p(lvl, vector<int>(n, -1));
+    vector<int> depth(n, 0);
+    
+    function<void(int, int)> dfs = [&](int u, int par) {
+        p[0][u] = par;
+        depth[u] = par == -1 ? 0 : depth[par] + 1;
+        
+        for(auto& [w, v] : g[u]) {
+            if(v == par) continue;
+            dfs(v, u);
+        }    
+    };
+    dfs(0, -1);
+    
+
+    for(int i = 1; i < lvl; i++){
+        for(int node = 0; node < n; node++){
+            if(p[i - 1][node] != -1){
+                p[i][node] = p[i - 1][p[i - 1][node]];
+            }
+        }
+    }
+    
+    auto get = [&](int node, int dis) {
+        for (int i = lvl - 1; i >= 0; i--)
+            if (dis >> i & 1) 
+                node = p[i][node];
+        return node;
+    };
+    
+    auto find_lca = [&](int u, int v) {
+        if (depth[u] > depth[v]) { 
+            swap(u, v);
+        }
+
+        v = get(v, depth[v] - depth[u]);
+
+        if (u == v) 
+            return u;
+
+        for (int i = lvl - 1; i >= 0; i--){
+            if (p[i][u] != p[i][v]){
+                u = p[i][u];
+                v = p[i][v];
+            }
+        }
+        return p[0][u];
+    };
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_lca</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

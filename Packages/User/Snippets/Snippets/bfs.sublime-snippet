@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+auto bfs = [&] (vector<int> src, vector<int> &bfs_dist) {
+    bfs_dist.resize(n, inf);
+    queue<int> q;
+    for (int ele: src) {
+        q.push(ele);
+        bfs_dist[ele] = 0;
+    }
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (auto& v: g[u]) {
+            if (bfs_dist[v] > bfs_dist[u] + 1) {
+                bfs_dist[v] = bfs_dist[u] + 1;
+                q.push(v);
+            }
+        }
+    }
+};
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_bfs</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,22 @@
+<snippet>
+    <content><![CDATA[
+int inverse(int a, int m) {
+    if(a == 0) return 0;
+    int MOD = m;
+    int u = 0, v = 1;
+    while (a != 0) {
+        int t = m / a;
+        m -= t * a; swap(a, m);
+        u -= t * v; swap(u, v);
+    }
+    assert(m == 1);
+    u %= MOD;
+    if(u < 0) u += MOD;
+    return u;
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_inverse</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[
+template<typename T, typename T1> T lcm (T a, T1 b) { return a * b / gcd(a, b); }
+template<typename T, typename T1, typename... Tail> T lcm (T a, T1 b, Tail... c) { return lcm(lcm(a, b), c...); }
+template<typename T, typename T1, typename... Tail> T gcd (T a, T1 b, Tail... c) { return gcd(gcd(a, b), c...); }
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_gcdAndLcm</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

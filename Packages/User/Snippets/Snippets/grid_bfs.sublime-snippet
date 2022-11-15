@@ -1,0 +1,37 @@
+<snippet>
+    <content><![CDATA[
+int n, m;
+scan(n, m);
+const int dr[] = {-1, 0, 1, 0};
+const int dc[] = {0, -1, 0, 1};
+auto e = [&] (int r, int c) {
+    return 0 <= r && r < n && 0 <= c && c < m;  
+};
+auto grid_bfs = [&] (const vector<pair<int, int>> &source, vector<vector<int>> &d) {
+    d.assign(n, vector<int>(m, inf));
+    queue<pair<int, int>> q;
+    for (auto &[r, c] : source) {
+        q.emplace(r, c);
+        d[r][c] = 0;    
+    }
+    while(!q.empty()) {
+        auto [r, c] = q.front();
+        q.pop();   
+        for(int dir = 0; dir < 4; dir++) {
+            int nr = r + dr[dir], nc = c  + dc[dir];
+            if(e(nr, nc) && d[r][c] + 1 < d[nr][nc]) {
+                q.emplace(nr, nc);
+                d[nr][nc] = d[r][c] + 1;
+            }
+        }    
+    }
+};
+${1:vector<vector<int>> d;
+grid_bfs({{0, 0\}\}, d);}
+$0
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_grid_bfs</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

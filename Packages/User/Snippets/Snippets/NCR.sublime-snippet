@@ -1,0 +1,18 @@
+<snippet>
+    <content><![CDATA[
+int C(int n, int m) {
+    // C(n, i) -> C(n, i-1) * (n-i+1)/i
+    // C(n, 0) = 1
+
+    int ret = 1;
+    for(int i = 1; i <= m; i++) {
+        ret = ret * 1LL * (n - i + 1) / i;
+    }
+    
+    return ret;
+}]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_NCR</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

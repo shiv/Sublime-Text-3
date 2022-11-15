@@ -1,0 +1,84 @@
+<snippet>
+    <content><![CDATA[
+const int lg = 20;
+
+class binary_trie {
+public:
+   
+    struct node {
+        int freq;
+        vector<node*> child;
+        node () : freq(0), child(vector<node*>(2, nullptr)) {}
+    };
+   
+    node *root;
+   
+    binary_trie() {
+        root = new node();
+    }
+   
+    binary_trie(vector<int> &a) {
+        root = new node();
+        for (auto &x : a)
+            add(x);
+    }
+   
+    void add(int num) {
+        node *cur = root;
+        for (int i = lg - 1; i >= 0; i--) {
+            int ch = num >> i & 1;
+            if (!cur->child[ch])
+                cur->child[ch] = new node();  
+            cur = cur->child[ch];
+            cur->freq++;
+        }
+    }
+  
+    void remove(int num) {
+        node* cur = root;
+        for (int i = lg - 1; i >= 0; i--) {
+            int ch = num >> i & 1;
+            cur = cur->child[ch];
+            assert(cur && cur->freq > 0);
+            cur->freq--;
+        }
+    }
+   
+    // returns `x` present in trie such that (num ^ x) is maximum
+    int xor_max(int num) {
+        node *cur = root;
+        int ret = 0;
+        for (int i = lg - 1; i >= 0; i--) {
+            int ch = (num >> i & 1) ^ 1;
+            if (!cur->child[ch] || cur->child[ch]->freq == 0)
+                ch ^= 1;
+            cur = cur->child[ch];
+            assert(cur && cur->freq > 0);
+            if (ch == 1)
+                ret |= 1 << i;
+        }
+        return ret;
+    }
+    
+    // returns `x` present in trie such that (num ^ x) is minimum
+    int xor_min(int num) {
+        node *cur = root;
+        int ret = 0;
+        for (int i = lg - 1; i >= 0; i--) {
+            int ch = num >> i & 1;
+            if (!cur->child[ch] || cur->child[ch]->freq == 0)
+                ch ^= 1;
+            cur = cur->child[ch];
+            assert(cur && cur->freq > 0);
+            if (ch == 1)
+                ret |= 1 << i;
+        }
+        return ret;
+    }
+};
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_binary_trie</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

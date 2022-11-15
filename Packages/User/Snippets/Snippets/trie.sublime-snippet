@@ -1,0 +1,54 @@
+<snippet>
+    <content><![CDATA[
+class Trie {
+public:
+    
+    struct node {
+        vector<node*> child;
+        bool endOfWord;
+        
+        node () {
+            endOfWord = false;
+            child = vector<node*>(26, NULL);
+        }
+    };
+    
+    node *root;
+    
+    Trie () {
+        root = new node();
+    }
+    
+    node* add (string &s, int idx = 0, node *cur = NULL) {
+        if (cur == NULL) cur = root;
+        
+        for (int i = idx; i < s.size(); i++) {
+            int ch = s[i] - 'a';
+            
+            if (!cur->child[ch])
+                cur->child[ch] = new node();   
+            
+            cur = cur->child[ch];
+        }
+        cur->endOfWord = true;
+        return cur;
+    }
+    
+    node* search (string &s, int idx = 0, node *cur = NULL) {
+        if (cur == NULL) cur = root;
+            
+        for (int i = idx; i < s.size(); i++) {
+            cur = cur->child[s[i] - 'a'];
+            
+            if (!cur) break;
+        }
+        return cur;
+    }
+    
+};
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_trie</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

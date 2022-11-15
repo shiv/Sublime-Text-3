@@ -1,0 +1,39 @@
+<snippet>
+    <content><![CDATA[
+// helper functions
+namespace tsa {
+    // most significant bit
+    int msb (int64_t x) {
+        return 63 - __builtin_clzll(x);
+    }
+    
+    // least significant bit
+    int lsb (int64_t x) {
+        return __builtin_ctzll(x);
+    }
+    
+    // extracts the last element
+    template <typename T>
+    T extract_back (vector<T> &v) {
+        T x = v.back();
+        v.pop_back();
+        return x;    
+    };
+    
+    // in-place co-ordinate compression, returns no of unique elements
+    template<typename T>
+    T compress (vector<T> &a, int offset = 0) {
+        vector<T> b = a;
+        sort(b.begin(), b.end());
+        b.resize(b.end() - unique(b.begin(), b.end()));
+        for(T &x : a)
+            x = lower_bound(b.begin(), b.end(), x) - b.begin() + offset;
+        return b.size();
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_tsa</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

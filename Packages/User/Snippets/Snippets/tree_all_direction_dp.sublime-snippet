@@ -1,0 +1,33 @@
+<snippet>
+    <content><![CDATA[
+vector<int> p(n), d(n);
+vector<int> dp_up(n, 0), dp_down(n, 0);
+vector<int> sz(n, 0);
+int ans = 0;
+function<void(int, int)> dfs_down = [&](int u, int par) {
+    p[u] = par;
+    sz[u] = 1;
+    
+    for(auto& v : g[u]) {
+        if(v == par) continue;
+        dfs_down(v, u);
+        dp_down[u] += dp_down[v] + sz[v];
+        sz[u] += sz[v];
+    }    
+};
+dfs_down(0, -1);
+function<void(int, int)> dfs_up = [&](int u, int par) {
+    
+    for(auto& v : g[u]) {
+        if(v == par) continue;
+        dp_up[v] = dp_up[u] + (n - sz[v]) + dp_down[u] - (dp_down[v] + sz[v]);
+        dfs_up(v, u);
+    }    
+};
+dfs_up(0, -1);
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_tree_all_direction_dp</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

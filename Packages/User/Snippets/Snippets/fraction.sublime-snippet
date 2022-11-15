@@ -1,0 +1,101 @@
+<snippet>
+    <content><![CDATA[
+struct fraction {
+    int num, den;
+
+    fraction(int _num = 0, int _den = 1) : num(_num), den(_den) {}
+    
+    fraction(const fraction &other) : num(other.num), den(other.den) {}
+    
+    bool operator<(const fraction &other) const {
+        return num * other.den < other.num * den;
+    }
+    
+    bool operator<=(const fraction &other) const {
+        return num * other.den <= other.num * den;
+    }
+    
+    bool operator>(const fraction &other) const {
+        return num * other.den > other.num * den;
+    }
+    
+    bool operator>=(const fraction &other) const {
+        return num * other.den >= other.num * den;
+    }
+
+    bool operator==(const fraction &other) const {
+        return num * other.den == other.num * den;
+    }
+
+    bool operator!=(const fraction &other) const {
+        return num * other.den != other.num * den;
+    }
+    
+    fraction operator+(const fraction &other) const {
+        return fraction(num * other.den + other.num * den, den * other.den);
+    }
+    
+    fraction operator-(const fraction &other) const {
+        return fraction(num * other.den - other.num * den, den * other.den);
+    }
+    
+    fraction operator*(const fraction &other) const {
+        return fraction(num * other.num, den * other.den);
+    }
+    
+    fraction operator/(const fraction &other) const {
+        return fraction(num * other.den, den * other.num);
+    }
+    
+    bool operator<(const int &x) const {
+        return num < x * den;
+    }
+    
+    bool operator<=(const int &x) const {
+        return num <= x * den;
+    }
+    
+    bool operator>(const int &x) const {
+        return num > x * den;
+    }
+    
+    bool operator>=(const int &x) const {
+        return num >= x * den;
+    }
+
+    bool operator==(const int &x) const {
+        return num == x * den;
+    }
+
+    bool operator!=(const int &x) const {
+        return num != x * den;
+    }
+    
+    fraction operator+(const int &x) const {
+        return fraction(num + x * den, den);
+    }
+    
+    fraction operator-(const int &x) const {
+        return fraction(num - x * den, den);
+    }
+    
+    fraction operator*(const int &x) const {
+        return fraction(num * x, den);
+    }
+    
+    fraction operator/(const int &x) const {
+        return fraction(num, den * x);
+    }
+
+    friend ostream &operator<<(ostream &os, const fraction &f) {
+        // return os << f.num << "/" << f.den << "=" << (long double) f.num / f.den;
+        return os << (long double)f.num / f.den;
+    }
+};
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_fraction</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

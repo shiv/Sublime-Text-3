@@ -1,0 +1,24 @@
+<snippet>
+    <content><![CDATA[
+template <typename T, typename T1, typename... Tail>
+T amax(T& a, T1 b, Tail... c) {
+    if(b > a) a = b;
+    if constexpr (sizeof...(c) != 0) {
+        amax(a, c...);
+    }
+    return a;
+}
+template <typename T, typename T1, typename... Tail>
+T amin(T& a, T1 b, Tail... c) {
+    if(b < a) a = b;
+    if constexpr (sizeof...(c) != 0) {
+        amin(a, c...);
+    }
+    return a;
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>snippet_min_max</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>
