@@ -3,7 +3,8 @@
     "cancel": {"kill": true},
         
     "osx": {
-        "shell_cmd": "dbcompile \"${file_base_name}\"",
+        // "shell_cmd": "dbcompile \"${file_base_name}\"",
+        "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -DLOCAL -O2 && \"${file_path}/${file_base_name}.out\"",
     },
     "linux": {
         "shell_cmd": "dbcompile \"${file_base_name}\"",
@@ -20,7 +21,8 @@
         {
             "name":"Fast Compile And Run",
             "osx": {
-                "shell_cmd": "compile \"${file_base_name}\"",
+                // "shell_cmd": "compile \"${file_base_name}\"",
+                "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -O2",
             },  
             "linux": {
                 "shell_cmd": "compile \"${file_base_name}\"",

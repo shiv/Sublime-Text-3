@@ -10,11 +10,13 @@
     [
         {
             "name":"Compile",
-            "shell_cmd": "g++-11 -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -O2",
+            "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -O2",
+            // "shell_cmd": "g++-11 -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -O2 -Wshadow -Wall -DLOCAL -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG",
         },
         {
             "name":"Run",
-            "shell_cmd": "g++-11 -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -DLOCAL -O2 && \"${file_path}/${file_base_name}.out\"",
+            "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -DLOCAL -O2 && \"${file_path}/${file_base_name}.out\"",
+            // "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}.out\" -DLOCAL -O2 -Wshadow -Wall -DLOCAL -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && \"${file_path}/${file_base_name}.out\"",
         },
         {
             "name": "Debug",

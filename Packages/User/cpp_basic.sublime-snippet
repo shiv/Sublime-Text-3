@@ -17,9 +17,6 @@ template <typename Head> void dbg_out(string var, const Head &H) { cerr << var <
 #define dbg(...)
 #endif
 
-template <typename T, typename Head, typename... Tail> T amax(T& a, Head b, Tail... c) { if (b > a) a = b; if constexpr (sizeof...(c) != 0) amax(a, c...); return a; }
-template <typename T, typename Head, typename... Tail> T amin(T& a, Head b, Tail... c) { if (b < a) a = b; if constexpr (sizeof...(c) != 0) amin(a, c...); return a; }
-
 #define int int64_t
 const int inf = 1e18L + 5, mod = 1e9 + 7, N = 2e5 + 5;
 
